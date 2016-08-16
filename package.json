@@ -1,0 +1,26 @@
+{
+  "name": "geeb-art-3",
+  "version": "1.0.0",
+  "description": "The 3rd Iteration of my portfolio site.",
+  "main": "index.js",
+  "scripts": {
+    "test": "boosh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/geebart/geeb-art-3.git"
+  },
+  "keywords": [
+    "Portfolio",
+    "Technology",
+    "Director",
+    "Developer",
+    "Agency"
+  ],
+  "author": "Chris \"Geeb\" Smith",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/geebart/geeb-art-3/issues"
+  },
+  "homepage": "https://github.com/geebart/geeb-art-3#readme"
+}
