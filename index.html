@@ -346,7 +346,7 @@
 		transition: transform .6s ease-out 2s, visibility .6s ease-out 2s, opacity .6s ease-out 2s;
 	}
 	.down-wrap a{
-		color: rgba(100,100,100,.7);
+		color: rgba(220,220,220,.8);
 		text-decoration: none;
 		padding: 2rem;
 		font-size: 1.8rem;
@@ -493,15 +493,9 @@
 		background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAG0lEQVQYV2NkYGD4z8DAwMgABXAGNgGwSgwVAFbmAgXQdISfAAAAAElFTkSuQmCC);
 	}
 	#hire-me{
-		padding-bottom: 8rem;
-		padding-top: 2rem;
-		box-shadow: 0 0 0;
 		background: #222;
-		/*background: -webkit-linear-gradient(top, #222 0%,#444 100%);
-		background: linear-gradient(to bottom, #222 0%,#444 100%);*/
-	}
-	.headshot{
-		border-radius: 100%;
+		background: -webkit-linear-gradient(top, #222 0%,#444 100%);
+		background: linear-gradient(to bottom, #222 0%,#444 100%);
 	}
 	#denver{
 		background: #FFF;
@@ -668,8 +662,10 @@
 	    background: rgba(120, 120, 120, .85);
 	}
 	#timeline h6:after{
+		content:"";
 		width: 0;
 		height: 0;
+		top:0;
 		border-style: solid;
 		border-width: 2.5rem 0 2.5rem 3rem;
 		border-color: transparent transparent transparent rgba(120, 120, 120, .85);
@@ -795,7 +791,7 @@
 		background: rgba(255, 255, 255, .95);
 		border-radius: 0 0 .2rem .2rem; 
 	}
-	#hire-me:before, #hire-me:after{
+	/*#hire-me:before, #hire-me:after{
 		content:"";
 		top: -4rem;
 		left: 0;
@@ -811,7 +807,7 @@
 		border-radius: 4rem 0 0 0;
 		left: auto;
 		right:0;
-	}
+	}*/
 	#work{
 		background: #222;
 		padding-bottom: 0;
@@ -868,6 +864,9 @@
 		box-shadow: inset 0 0 4rem rgba(0,0,0,1);
 		-webkit-transition: all .3s ease-out;
 		transition: all .3s ease-out;
+	}
+	#work .center{
+		padding: 2rem 0 6rem;
 	}
 	/*#denver:before{
 		-webkit-transform: translateX(-50%) rotate(45deg);
@@ -1193,7 +1192,7 @@
 					</ul>
 				</div>
 				<div class="center">
-					<a class="button dark scroll" data-scroll="#origins" href="#" title="Scroll down the page to the next section">See My Work</a>
+					<a class="button dark scroll" data-scroll="#work" href="#" title="Scroll down the page to the next section">See My Work</a>
 				</div>
 			</div>
 		</div>
@@ -1335,6 +1334,11 @@
 				</a>
 			</li>
 		</ul>
+		<div class="wrap">
+			<div class="row center">
+				<a class="button scroll" href="#" data-scroll="#skills" title="Scroll to Next Section">Geeb's Got Skill</a> 
+			</div>
+		</div>
 	</section>
 	<section id="skills">
 		<div class="screen"></div>
@@ -1410,6 +1414,7 @@
 		border-radius: .2rem;
 		-webkit-transition: all .3s ease-out;
 		transition: all .3s ease-out;
+		box-shadow: inset 0 0 1rem rgba(0,0,0,.1);
 	}
 /*	::placeholder, :placeholder, ::-webkit-input-placeholder, ::-webkit-textarea-placeholder, ::-webkit-select-placeholder, :-moz-input-placeholder, :-moz-textarea-placeholder, :-moz-select-placeholder, :input-placeholder, :textarea-placeholder, :select-placeholder{
 		color:#F00;
@@ -1420,11 +1425,13 @@
 	input:hover, textarea:hover, select:hover{
 		border-color: rgba(255, 255, 255, .6);
 		background-color: rgba(255, 255, 255, .4);
+		box-shadow: inset 0 0 0;
 	}
 	input:focus, textarea:focus, select:focus{
 		border-color: rgba(255, 255, 255, .7);
 		background-color: rgba(255, 255, 255, .5);
 		color: #FFF;
+		box-shadow: 0 0 4rem rgba(0,0,0,.4);
 	}
 	textarea{
 		height: 12rem;
@@ -1434,12 +1441,20 @@
 		width: 100%;
 		max-width: 100%;
 	}
+	#hire-me figure{
+		padding: 0;
+		background: transparent;
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		max-width: 600px;
+	}
 </style>
 	<section id="hire-me">
 		<div class="wrap">
 			<div class="row">
-				<h3>Contact the Geebs</h3>
-				<h4>Email Over Phones</h4>
+				<h3>Contact Geeb</h3>
+				<h4>Let's Talk</h4>
 				<div class="vpc vpw-2">
 					<div class="table"><div><div><div>
 					<div id="form-wrap"><!-- JS INJECT FORM --></div>
@@ -1447,18 +1462,19 @@
 				</div>
 				<div class="vpc vpw-2">
 					<figure>
-						<img class="headshot" src="images/geeb-headshot-purple-v.jpg" alt="Geeb in Purple V"/>
+						<img class="headshot" src="images/geeb-purple-v-transparent.png" alt="Geeb in Purple V"/>
 					</figure>
 				</div>
 			</div>
-			<div class="row center">
+			<!-- <div class="row center">
 				<a class="button ghost scroll" data-scroll="#denver" href="#" title="Scroll down the page to the next section">Explore Denver</a>
-			</div>
+			</div> -->
 		</div>
 	</section>
 <style>
 #denver{
 	min-height: 72rem;
+	border-bottom: 1rem solid #AAA;
 	background: -webkit-linear-gradient(top, rgba(48,24,44,1) 0%,rgba(97,61,102,1) 16%,rgba(242,196,123,1) 47%,rgba(246,230,180,1) 64%,rgba(237,144,23,1) 98%); /* Chrome10-25,Safari5.1-6 */
 	background: linear-gradient(to bottom, rgba(48,24,44,1) 0%,rgba(97,61,102,1) 16%,rgba(242,196,123,1) 47%,rgba(246,230,180,1) 64%,rgba(237,144,23,1) 98%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 }
