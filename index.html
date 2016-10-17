@@ -485,7 +485,7 @@
 		transition: transform 0s ease-out 0s, visibility .3s ease-out 0s, opacity .3s ease-out 0s;
 	}
 	#skills{
-		padding-bottom: 6rem;
+		padding-bottom: 14rem;
 		background: -webkit-linear-gradient(top, #575577 0%,#2c2d59 100%);
 		background: linear-gradient(to bottom, #575577 0%,#2c2d59 100%);
 	}
@@ -496,6 +496,7 @@
 		background: #222;
 		background: -webkit-linear-gradient(top, #222 0%,#444 100%);
 		background: linear-gradient(to bottom, #222 0%,#444 100%);
+		z-index: 3;
 	}
 	#denver{
 		background: #FFF;
@@ -1449,7 +1450,182 @@
 		right: 0;
 		max-width: 600px;
 	}
+	#browser{
+		font-family: Arial, Helvetica, sans-serif;
+		background: #333;
+		min-height: 100rem;
+		margin: -14rem 0;
+		border-radius: .5rem;
+		overflow: hidden;
+	}
+	#browser li{
+		list-style: none;
+	}
+	.dots-and-tabs{
+		list-style: none;
+		margin: 0;
+		padding: 0 1rem;
+		background: #999;
+		border-bottom: .1rem solid #6c6c6c;
+		display: flex;
+		align-items: flex-end;
+	}
+	.dot{
+		border-radius: 100%;
+		width: 1.2rem;
+		height: 1.2rem;
+		background: #000;
+		margin:1.7rem .5rem;
+	}
+	.tab{
+		position: relative;
+		display: flex;
+		align-items: center;
+		max-width: 20rem;
+		margin-right: -1rem;
+	}
+	.tab-box{
+		background: #d0d0d0;
+		width: 20rem;
+		height: 4.1rem;
+		vertical-align: bottom;
+		border-radius:.2rem .2rem 0 0;
+		margin: .5rem .5rem 0 .5rem;
+		border: .1rem solid #6b6b6b;
+		border-bottom: 0;
+		color: #000;
+		position: relative;
+		top: .1rem;
+		z-index: 0;
+		-webkit-transform: perspective(10rem) rotateX(30deg);
+		transform: perspective(10rem) rotateX(30deg);
+	}
+	.tab-content{
+		text-decoration: none;
+		color: #000;
+		overflow: hidden;
+		float: left;
+		text-align: left;
+		text-indent: .5rem;
+		font-size: 1.2rem;
+		margin: 0rem 0;
+		vertical-align: bottom;
+		line-height: 1;
+		width: 100%;
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		padding: 1.2rem 1rem;
+		height: auto;
+		z-index:3;
+	}
+	.tab a{
+		text-decoration: none;
+		color: #000;
+		height: 1.2rem;
+		overflow: hidden;
+		float: left;
+		width: auto;
+		text-align: left;
+		text-indent: .5rem;
+		font-size: 1.2rem;
+		margin: 0rem 0;
+		vertical-align: bottom;
+		line-height: 1;
+	}
+	.tab:nth-child(4){
+		margin-left: 2rem;
+	}
+	.tab.active .tab-box {
+		background: #f2f2f2;
+		z-index: 3;
+		top: 2px;
+		height: 4.2rem;
+	}
+	.dot:nth-child(1){
+		background: #fc605b;
+	}
+	.dot:nth-child(2){
+		background: #cfcfcf;
+	}
+	.dot:nth-child(3){
+		background: #33c748;
+	}
+	.address-bar{
+		background: #f2f2f2;
+		padding: .5rem;
+		margin: 0;
+	}
+	#web-address{
+		background: #FFF;
+		border: .1rem solid #b7b7b7;
+		color: #000;
+		box-shadow: 0 0 0;
+		font-size: 1.2rem;
+		width: 100%;
+		border-radius: .3rem;
+		padding: .75rem .5rem;
+		margin: 0;
+	}
+	.content{
+		list-style: none;
+	}
+	.content li{
+		padding: 2rem;
+	}
 </style>
+	<section id="hire-me">
+		<div class="wrap">
+			<div class="row">
+				<div id="browser">
+					<ul class="dots-and-tabs">
+						<li class="dot"></li>
+						<li class="dot"></li>
+						<li class="dot"></li>
+						<li class="tab active">
+							<div class="tab-box"></div>
+							<div class="tab-content">
+								<a href="" title="">About | GeebArt</a>
+							</div>
+						</li>
+						<li class="tab">
+							<div class="tab-box"></div>
+							<div class="tab-content">
+								<a href="" title="">Contact | GeebArt</a>
+							</div>
+						</li>
+						<li class="tab">
+							<div class="tab-box"></div>
+							<div class="tab-content">
+								<a href="" title="">Map | GeebArt</a>
+							</div>
+						</li>
+						<li class="tab">
+							<div class="tab-box"></div>
+							<div class="tab-content">
+								<a href="" title="">Denver Trip | GeebArt</a>
+							</div>
+						</li>
+					</ul>
+					<ul class="address-bar">
+						<li><input id="web-address" name="web-address" type="text" readonly="readonly" value="geebart.com/about"/></li>
+					</ul>
+					<ul class="content">
+						<li class="active">
+							<div class="wrap">
+								<div class="row">
+									<h3>Hello,</h3>
+									<h4>My name is Chris "Geeb" Smith and I am a Product and Technology Director looking for work in Denver, Colorado.</h4>
+								</div>
+							</div>
+						</li>
+					</ul>
+			</div>
+			<!-- <div class="row center">
+				<a class="button ghost scroll" data-scroll="#denver" href="#" title="Scroll down the page to the next section">Explore Denver</a>
+			</div> -->
+		</div>
+	</section>
 	<section id="hire-me">
 		<div class="wrap">
 			<div class="row">
