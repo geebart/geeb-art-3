@@ -23,22 +23,14 @@ jQuery(document).ready(function($){
 
 			};
 
-			// HIDE CONTENT
-			if(location.search.indexOf('test=true') == true){
-				$('body').addClass('test');
+			// HIDE/SHOW CONTENT DEN
+			if(location.origin.split('.')[0].split('//')[1] == 'den' || location.search.indexOf('dev=true') > -1){
+				$('body').addClass('den');
 			}
-
-			// INJECT CONTACT FORM
-			var formHTML = '<form id="contact-form" method="POST">' +
-					'<label for="Name">Your Name</label><input type="text" name="Name" placeholder="John Smith">' +
-					'<label for="From">Your Email</label><input type="email" name="From" placeholder="john@smith.com">' +
-					'<label for="Message">Your Message</label><textarea name="Message" placeholder="Want to work with me? Tell me why?"></textarea>' +
-					'<div class="loading-wrap"><input class="button" type="submit" value="Send"><span class="progress"></span></div>'+
-					'<div class="message-wrap"><span class="error-icon">&times;</span>' +
-					'<span class="checkmark-icon">&#10003;</span>' +
-					'<span class="message"></span></div>' +
-				'</form>';
-			$('#form-wrap').html(formHTML);
+			// HIDE/SHOW CONTENT CHI
+			if(location.origin.split('.')[0].split('//')[1] == 'chi'){
+				$('body').addClass('chi');
+			}
 
 			// SLICK SLIDER
 			var slickVars = {
@@ -67,8 +59,8 @@ jQuery(document).ready(function($){
 						} else if($(this).offset().top > $(window).scrollTop()){
 							$(this).removeClass('active');
 						}
-						if($(this).is(':last-child') && $(this).hasClass('active')){
-							$(this).addClass('last');
+						if($(this).is(':last-child') && $(this).hasClass('active') && !$(this).hasClass('last') && !$(this).hasClass('once')){
+							$(this).addClass('last once');
 							var $btn = $(this).find('.button');
 							setTimeout(function(){
 								$btn.addClass('active');
@@ -79,6 +71,7 @@ jQuery(document).ready(function($){
 						} else{
 							$(this).removeClass('last');
 						}
+						// DRAW LINE
 						$tmProgress.height($tm.find('li.active').last().position().top + 5);
 					});
 				}
@@ -165,6 +158,11 @@ jQuery(document).ready(function($){
 						}
 					});
 				}
+			});
+
+			// TOGGLE FRAME WRAP
+			$(document).on('click', '.toggle-frame', function(event){
+				$('.frame-wrap').toggleClass('swap');
 			});
 
 		});
