@@ -367,6 +367,7 @@ transition: all 1.6s ease-out;
 background: rgba(0,0,0,0);
 position: relative;
 z-index: 1;
+padding: 0 4rem;
 }
 #greet-hero.active .table{
 background: rgba(0,0,0,.65);
@@ -2038,6 +2039,21 @@ background-clip: border-box;
 text-fill-color: currentcolor;
 color:#222;
 text-align: left;
+}
+
+/* MEDIA */
+body .mobile{display:none;}
+body.mobile .mobile{display:block;}
+body.mobile .non-mobile{display:none;}
+
+/*@media (max-width:420px) and (min-width:321px){ */
+@media (max-width:420px){ 
+	html{
+		font-size: 8px;
+	}
+	#greet-hero h1{
+		line-height: 1.1;
+	}
 }
 
 /* ANIMATION */
