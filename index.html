@@ -2,16 +2,27 @@
 <html>
 <head>
 	<title>The Portfolio of Chris "Geeb" Smith | Geebart</title>
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans|Ubuntu:700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Dekko|Open+Sans|Ubuntu:700" rel="stylesheet">
 	<link href="css/style.css" rel="stylesheet">
 </head>
 <body>
 	<header>
-		<nav>
-			<ul><li><a href="" title=""></a></li></ul>
-			<ul><li><a href="" title=""></a></li></ul>
-			<ul><li><a href="" title=""></a></li></ul>
-			<ul><li><a href="" title=""></a></li></ul>
+		<nav class="wrap">
+			<ul>
+				<li class="title-card">
+					<a href="" title="">Chris &ldquo;Geeb&rdquo; Smith</a>
+					<small>Product Director</small>
+				</li>
+				<li class="social">
+					<ul>
+						<li><a class="icon" href="https://www.facebook.com/thegreatgeeber" target="_blank" title="Geeb on Facebook">&#xea90;</a></li>
+						<li><a class="icon" href="https://www.instagram.com/instageeber/" target="_blank" title="Geeb on Instagram">&#xea92;</a></li>
+						<li><a class="icon" href="https://twitter.com/theGreatGeeber" target="_blank" title="Geeb on Twitter">&#xea96;</a></li>
+						<li><a class="icon" href="https://www.linkedin.com/in/chris-geeb-smith-67673b28" target="_blank" title="Geeb on LinkedIn">&#xeaca;</a></li>
+						<li><a class="icon" href="https://open.spotify.com/user/1264863766" target="_blank" title="Geeb on Spotify">&#xea94;</a></li>
+					</ul>
+				</li>
+			</ul>
 		</nav>
 	</header>
 	<main>
@@ -21,8 +32,8 @@
 					<div>
 						<div class="wrap">
 							<div class="row">
-								<h1>CHRIS &ldquo;GEEB&rdquo; SMITH</h1>
-								<h2>A <strong>Technology and Product Director</strong> on an epic journey<br>to find work in <strong>Denver, Colorado</strong></h2>
+								<h1>Chris &ldquo;Geeb&rdquo; Smith</h1>
+								<h2>A <strong>Product Director</strong> on an epic journey<br>to find work in <strong>Denver, Colorado</strong></h2>
 								<div class="center">
 									<a class="button large scroll" data-scroll="#origins" href="#" title="Scroll down the page to the next section">Start the Journey</a>
 								</div>
@@ -35,7 +46,7 @@
 				<a href="#" class="scroll" data-scroll="#origins" title="Click or Scroll Down">Click or Scroll Down<br><span class="icon">&darr;</span></a>
 			</div>
 		</section>
-			<section id="origins">
+		<section id="origins">
 			<div class="screen"></div>
 			<div class="wrap">
 				<div class="row">
@@ -523,49 +534,38 @@
 								<div class="row">
 									<div class="frame-wrap">
 										<div id="headshot-frame" class="frame">
-											<div class="vpc vpw-2">
-												<figure>
-													<img class="headshot" src="images/geeb-purple-v-transparent.png" alt="Geeb in Purple V"/>
-												</figure>
-											</div>
-											<div class="vpc vpw-2 right">
+											<div class="vpc">
+												<span class="geeb-arrow">Geeb<span class="icon">&#xe969;</span></span>
 												<h3><span class="bubble">Hello.</span></h3>
-												<h4>My name is Chris "Geeb" Smith and I am a Product and Technology Director looking for work in Denver, Colorado.</h4>
+												<h6>Why Denver?</h6>
+												<p>Full discolsure, I've fallen madly in love with the city of <strong>Denver</strong>. From the skweaky clean streets to the mountain scapes, Denver is a beautiful utopia. This is the place where my creative spark will shine brightest. I am destined to move west.</p>
+												<h6>What do I bring to the table?</h6>
+												<p>I am a Developer turned <strong>Product Director</strong> with a knack for problem solving and collaboration. I've managed teams of 20+, I've worked with offshore teams and 3rd party vendors, I've built million-dollar platforms for fortune 500 companies and I infuse all of this with a <strong>creative approach</strong>.</p>
 												<a class="button dark ghost toggle-frame" title=""><span class="icon">&#xe945;</span> Get in Touch</a>
 											</div>
 											<div id="map"></div>
 										</div>
 										<div id="form-frame" class="frame">
 											<div class="vpc vpw-1">
-												<a class="toggle-frame" title="back to previous">&#8617; Back</a>
 												<h3>Let's Talk</h3>
 												<form id="contact-form" method="POST">
 													<label for="Name">Your Name</label><input type="text" name="Name" placeholder="John Smith">
 													<label for="From">Your Email</label><input type="email" name="From" placeholder="john@smith.com">
-													<label for="Message">Your Message</label><textarea name="Message" placeholder="Want to work with me? Tell me why?"></textarea>
-													<div class="loading-wrap"><input class="button" type="submit" value="Send"><span class="progress"></span></div>'+
-													<div class="message-wrap"><span class="error-icon">&times;</span>
-													<span class="checkmark-icon">&#10003;</span>
-													<span class="message"></span></div>
+													<label for="Message">Your Message</label><textarea name="Message" placeholder="Got the Geeber fever? Tell me why."></textarea>
+													<div class="loading-wrap">
+														<a class="button dark toggle-frame" title="back to previous"><span>&#8617;</span> Back</a>
+														<input class="button" type="submit" value="Send">
+														<span class="progress"></span>
+													</div>
+													<div class="message-wrap">
+														<span class="error-icon">&times;</span>
+														<span class="checkmark-icon">&#10003;</span>
+														<span class="message"></span>
+													</div>
 												</form>
 											</div>
 										</div>
 									</div>
-									<script>
-										var mapStyles = [{"featureType":"landscape","stylers":[{"saturation":-100},{"lightness":65},{"visibility":"on"}]},{"featureType":"poi","stylers":[{"saturation":-100},{"lightness":51},{"visibility":"simplified"}]},{"featureType":"road.highway","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"road.arterial","stylers":[{"saturation":-100},{"lightness":30},{"visibility":"on"}]},{"featureType":"road.local","stylers":[{"saturation":-100},{"lightness":40},{"visibility":"on"}]},{"featureType":"transit","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"administrative.province","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"labels","stylers":[{"visibility":"on"},{"lightness":-25},{"saturation":-100}]},{"featureType":"water","elementType":"geometry","stylers":[{"hue":"#ffff00"},{"lightness":-25},{"saturation":-97}]}]
-										var map;
-										function initMap() {
-										map = new google.maps.Map(document.getElementById('map'), {
-											// center: {lat: 105, lng: 39.74},
-											center: {lat: 39.74, lng: -105},
-											zoom: 14,
-											mapTypeControl: false,
-											disableDefaultUI: true,
-											styles: mapStyles
-										});
-										}
-									</script>
-									<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBueL7aR7e7RApFcanrpkUFz9zPhB8ht0&callback=initMap" async defer></script>
 								</div>
 							</div>
 						</div>
@@ -576,8 +576,8 @@
 		<section id="denver">
 			<div class="wrap">
 				<div class="row">
-					<h3>A Bright Future in Denver</h3>
-					<h4>A CSS Drawing Dedicated to the Mile High City</h4>
+					<!-- <h3>A Bright Future in Denver</h3>
+					<h4>A CSS Drawing Dedicated to the Mile High City</h4> -->
 					<div id="building-scene">
 						<div class="building">
 							<div class="window"></div>
@@ -705,12 +705,12 @@
 			</div>
 		</section>
 		<section id="gallery">
-			<div class="wrap">
+			<!-- <div class="wrap">
 				<div class="row">
 					<h3>Latest Trip to Denver</h3>
 					<h4>September 14, 2016</h4>
 				</div>
-			</div>
+			</div> -->
 			<div id="slider-wrap">
 				<div class="wrap">
 					<div class="row">
@@ -733,7 +733,23 @@
 	<footer>
 		<div class="wrap">
 			<div class="row">
-
+				<ul class="vpc vpw-3">
+					<li><strong>Denver Address</strong></li>
+					<li>1560 E 97th Ct.</li>
+					<li>Thornton, CO, 80229</li>
+				</ul>
+				<ul class="vpc vpw-3">
+					<li><strong>Chicago Address</strong></li>
+					<li>3108 W Grace St. #2</li>
+					<li>Chicago, IL, 60451</li>
+				</ul>
+				<ul class="vpc vpw-3">
+					<li><strong>Additional Contact Information</strong></li>
+					<li><a href="tel:18156851855" target="_blank" class="tel"><span class="icon">&#xe942;</span> 815-685-1855</a></li>
+					<li><span class="icon">&#xeac5;</span> thegreatgeeber</a></li>
+				</ul>
+				<hr>
+				<p class="vpc">&copy; Christopher Brian Smith 2016 &mdash; <a href="https://github.com/geebart/geeb-art-3" title="GeebArt 3 on GitHub" target="_blank">Hosted on GitHub</a></p>
 			</div>
 		</div>
 	</footer>
@@ -744,12 +760,33 @@
 					<div class="modal-content">
 						<a class="close-modal">&times;</a>
 						<h4>Let's Talk</h4>
-						<div id="form-wrap"><!-- JS INJECT FORM --></div>
+						<div id="form-wrap"></div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 	<script src="js/jquery.js"></script>
 	<script src="js/combined.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBueL7aR7e7RApFcanrpkUFz9zPhB8ht0&callback=initMap" async defer></script>
+	<script>
+	var mapStyles = [{"featureType":"landscape","stylers":[{"saturation":-100},{"lightness":65},{"visibility":"on"}]},{"featureType":"poi","stylers":[{"saturation":-100},{"lightness":51},{"visibility":"simplified"}]},{"featureType":"road.highway","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"road.arterial","stylers":[{"saturation":-100},{"lightness":30},{"visibility":"on"}]},{"featureType":"road.local","stylers":[{"saturation":-100},{"lightness":40},{"visibility":"on"}]},{"featureType":"transit","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"administrative.province","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"labels","stylers":[{"visibility":"on"},{"lightness":-25},{"saturation":-100}]},{"featureType":"water","elementType":"geometry","stylers":[{"hue":"#ffff00"},{"lightness":-25},{"saturation":-97}]}]
+	var map;
+	function initMap() {
+		map = new google.maps.Map(document.getElementById('map'), {
+			center: {lat: 39.74, lng: -105},
+			zoom: 12,
+			disableDefaultUI: true,
+			styles: mapStyles,
+			zoomControl: false,
+			fullscreenControl: false,
+			scrollwheel: false,
+		    navigationControl: false,
+		    mapTypeControl: false,
+		    scaleControl: false,
+		    draggable: false
+		});
+	}
+	</script>
 </body>
 </html>
