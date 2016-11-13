@@ -367,7 +367,6 @@ transition: all 1.6s ease-out;
 background: rgba(0,0,0,0);
 position: relative;
 z-index: 1;
-padding: 0 4rem;
 }
 #greet-hero.active .table{
 background: rgba(0,0,0,.65);
@@ -436,7 +435,7 @@ text-align: center;
 transition: transform .6s ease-out 2s, visibility .6s ease-out 2s, opacity .6s ease-out 2s;
 }
 .down-wrap a{
-color: rgba(220,220,220,.8);
+color: rgba(240,240,240,.9);
 text-decoration: none;
 padding: 2rem;
 font-size: 1.8rem;
@@ -2044,15 +2043,31 @@ text-align: left;
 /* MEDIA */
 body .mobile{display:none;}
 body.mobile .mobile{display:block;}
-body.mobile .non-mobile{display:none;}
+body.mobile .non-mobile{display:none !important;}
 
 /*@media (max-width:420px) and (min-width:321px){ */
 @media (max-width:420px){ 
 	html{
 		font-size: 8px;
 	}
+	section .wrap{
+		padding: 0 4rem;
+	}
 	#greet-hero h1{
 		line-height: 1.1;
+	}
+	h3{
+		line-height: 1.1;
+	}
+	#origins p{
+		float:left;
+		width: 100%;
+	}
+	#origins figure{
+		width: auto;
+		float:none;
+		margin:0 0 2rem;
+		display: inline-block;
 	}
 }
 
