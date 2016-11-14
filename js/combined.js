@@ -117,13 +117,19 @@ jQuery(document).ready(function($){
 	// ANIMATE SCROLL
 	$(document).on('click', '.scroll', function(e){
 		e.preventDefault();
-		console.log($(this).parents('section').attr('id'));
+		// GET HEADER HEIGHT
+		var headerHeight = $('header').outerHeight();
+		if($('body').hasClass('mobile')){
+			headerHeight = 0;
+			console.log('FIRE!');
+		}
+		// CHANGE SCROLL BASED ON SECTION
 		if($(this).parents('section').attr('id') == 'greet-hero'){
 			$("html, body").animate({scrollTop: $($(this).attr('data-scroll')).position().top}, 500);
 		} else if($(this).parents('section').attr('id') == 'skills'){
-			$("html, body").animate({scrollTop: ($($(this).attr('data-scroll')).position().top) - ($('header').outerHeight() + parseInt($('#hire-me').css('padding-top')) + 20)}, 500);
+			$("html, body").animate({scrollTop: ($($(this).attr('data-scroll')).position().top) - (headerHeight + parseInt($('#hire-me').css('padding-top')) + 20)}, 500);
 		} else{
-			$("html, body").animate({scrollTop: ($($(this).attr('data-scroll')).position().top) - ($('header').outerHeight())}, 500);
+			$("html, body").animate({scrollTop: ($($(this).attr('data-scroll')).position().top) - (headerHeight)}, 500);
 		}
 	});
 
