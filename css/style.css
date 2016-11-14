@@ -2254,4 +2254,7 @@ body.mobile .non-mobile{display:none !important;}
 	html{
 		font-size: 6px;
 	}
+	header{
+		display: none !important;
+	}
 }
