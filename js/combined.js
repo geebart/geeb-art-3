@@ -119,10 +119,10 @@ jQuery(document).ready(function($){
 		e.preventDefault();
 		// GET HEADER HEIGHT
 		var headerHeight = $('header').outerHeight();
-		if($('body').hasClass('mobile')){
-			headerHeight = 0;
-			console.log('FIRE!');
-		}
+		// if($('body').hasClass('mobile')){
+		// 	headerHeight = 0;
+		// 	console.log('FIRE!');
+		// }
 		// CHANGE SCROLL BASED ON SECTION
 		if($(this).parents('section').attr('id') == 'greet-hero'){
 			$("html, body").animate({scrollTop: $($(this).attr('data-scroll')).position().top}, 500);
