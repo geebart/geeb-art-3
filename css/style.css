@@ -399,7 +399,7 @@ opacity: 1;
 transform: translateY(0) scale(1);
 }
 #greet-hero h1 span{
-display: table-cell;
+/*display: table-cell;*/
 }
 #greet-hero h1 span:before, #greet-hero h1 span:after{
 display: none;
@@ -601,6 +601,9 @@ background: linear-gradient(to bottom, #2c2f89 0%,#7db9e8 100%);
 }
 #origins .wrap{
 max-width: 75rem;
+}
+#origins .center{
+float:none;
 }
 .screen{
 position: absolute;
@@ -2106,16 +2109,24 @@ body.mobile .non-mobile{display:none !important;}
 		line-height: 1.1;
 	}
 	h3{
+		font-size: 4.2rem;
 		line-height: 1.1;
+	}
+	h4{
+		font-size: 2.2rem;
+		margin-bottom: 4rem;
 	}
 	#origins p{
 		float:left;
 		width: 100%;
 	}
+	#origins .center{
+		float:left;
+	}
 	#origins figure{
 		width: auto;
 		float:none;
-		margin:0 0 2rem;
+		margin:0 0 4rem;
 		display: inline-block;
 	}
 	#timeline .progress{
@@ -2192,7 +2203,7 @@ body.mobile .non-mobile{display:none !important;}
 		background-position: 2rem 5rem;
 	}
 	.geeb-arrow{
-		left: 7rem;
+		left: 13%;
 		top: 6rem;
 	}
 	#headshot-frame h3{
@@ -2237,5 +2248,10 @@ body.mobile .non-mobile{display:none !important;}
 	40% {transform:translateX(-2rem);}
 	60% {transform:translateX(-2rem);}
 	100% {transform:translateX(170rem);} 
+	}
+}
+@media (max-width:320px){
+	html{
+		font-size: 6px;
 	}
 }
