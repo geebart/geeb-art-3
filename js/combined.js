@@ -117,13 +117,13 @@ jQuery(document).ready(function($){
 	});
 
 	// SECTION PARALLAX IMAGES
-	$('.parallax').each(function(){
-		$(this).parallax({
-			imageSrc: $(this).attr("data-background-image"),
-			speed: 0.9,
-			bleed: 80
-		});
-	});
+	// $('.parallax').each(function(){
+	// 	$(this).parallax({
+	// 		imageSrc: $(this).attr("data-background-image"),
+	// 		speed: 0.9,
+	// 		bleed: 80
+	// 	});
+	// });
 
 	// OTHER BACKGROUND IMAGES
 	$('.data-background-image').each(function(){
@@ -212,6 +212,83 @@ jQuery(document).ready(function($){
 	});
 
 });
+
+// YOUTUBE VIDEO HERO BACKGROUND
+$ = jQuery;
+
+$body = $('body');
+$hero = $body.find('#greet-hero');
+$player = $hero.find('#player');
+
+playerWidth = $hero.width();
+playerHeight = parseInt((playerWidth * 1080) / 1920) + 1;
+
+$player.height(playerHeight);
+$player.width(playerWidth);
+
+var tag = document.createElement('script');
+var player;
+
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+function onYouTubeIframeAPIReady() {
+	player = new YT.Player('player', {
+		height: '' + playerHeight + '',
+		width: '' + playerWidth + '',
+		videoId: 'Oy15fCRPJ5U',
+		playerVars: {
+			'rel': 0,
+			'controls': 0,
+			'showinfo': 0,
+			'autoplay': 1,
+			'loop': 1,
+			'modestbranding': 1,
+			'frameborder': 0,
+			'allowfullscreen': 1,
+			'vq':'hd1080'
+		},
+		events: {
+			'onReady': onPlayerReady,
+			'onStateChange': onPlayerStateChange
+		}
+	});
+}
+
+function resizePlayer(){
+	$player = $('#player');
+	$player.attr('style', '');
+	playerWidth = $hero.width();
+	playerHeight = parseInt((playerWidth * 1080) / 1920);
+	if(playerHeight < $hero.height()){
+		playerHeight = $hero.height();
+		playerWidth = (1920 * playerHeight) / 1080;
+		leftOffset = ((playerWidth - $hero.width()) / 2) * -1; 
+	}
+	$player.width(playerWidth);
+	$player.height(playerHeight);
+	$player.css('left', leftOffset);
+	player.setSize(playerWidth, playerHeight);
+}
+
+function onPlayerReady(event){
+	resizePlayer();
+	player.playVideo();
+	
+	// MUTE
+	player.mute();
+	// jQuery('#player-volume').removeClass('unmuted');
+}
+
+function onPlayerStateChange(event) {
+	if (event.data === YT.PlayerState.PLAYING && $body.hasClass('loading')){
+		$body.removeClass('loading');
+	} else if (event.data === YT.PlayerState.ENDED){
+		player.playVideo(); 
+	}
+}
+
 /*!
  * WARNING THIS PLUGIN WAS CUSTOMIZED FOR THIS EXPERIENCE TO IMPROVE PERFORMANCE AND REMOVE SHUTTER BUGS! - BY GEEB
  * parallax.js v1.4.2-custom (http://pixelcog.github.io/parallax.js/)
