@@ -1331,20 +1331,40 @@ border-radius: 0 0 .2rem .2rem;
 background: #222;
 padding-bottom: 0;
 }
-#work .project{
+.project{
 position: relative;
 padding: 0;
-}
-#work ul{
-padding:0;
-margin:0;
-}
-#work .project{
+display: block;
+float: left;
 background: #000;
 list-style: none;
 overflow: hidden;
+-webkit-transition: all .5s ease-out;
+transition: all .5s ease-out;
 }
-#work .logo{
+#work ul{
+position: relative;
+padding:0;
+margin:0;
+}
+.project.open{
+	z-index: 9;
+}
+.project.width{
+	position: absolute;
+	left:0;
+	top:0;
+	width: 100%;
+}
+.project.height{
+	height: 100%;
+}
+}
+.project .background, .project .logo, .project .loading{
+-webkit-transition: all .3s ease-out;
+transition: all .3s ease-out;
+}
+.logo{
 position: absolute;
 left: 0;
 top: 0;
@@ -1352,29 +1372,31 @@ z-index: 3;
 height: 100%;
 opacity: 0;
 }
-#work .project:hover .logo{
+.project:hover .logo{
 opacity: 1;
 box-shadow: inset 0 0 8rem rgba(0,0,0,.3);
 cursor: pointer;
 }
-#work .background{
+.project .background{
 position: relative;
 z-index: 0;
--webkit-transition: all .3s ease-out;
-transition: all .3s ease-out;
 }
-#work .project:hover .background{
+.project:hover .background{
 -webkit-filter: grayscale(100);
 filter: grayscale(100);
 transform: perspective(500px) translateZ(2rem);
 visibility: visible;
-opacity: .4;
+opacity: .8;
 }
-#work .background img{
+.project .background img{
 position: relative;
 z-index: 1;
 }
-#work .background:after{
+.project.width .background, .project.width .logo, .project.width .loading{
+	width: 10rem;
+	height: 10rem;
+}
+.background:after{
 position: absolute;
 height: 100%;
 z-index: 2;
@@ -1384,27 +1406,19 @@ box-shadow: inset 0 0 4rem rgba(0,0,0,1);
 -webkit-transition: all .3s ease-out;
 transition: all .3s ease-out;
 }
-#work .center{
+.project .center{
 padding: 2rem 0 6rem;
 }
-/*#denver:before{
--webkit-transform: translateX(-50%) rotate(45deg);
-transform: translateX(-50%) rotate(45deg);
-width: 6rem;
-height: 6rem;
-left: 50%;
-top: -3rem;
-box-shadow: 
--6rem 6rem 0 #FFF, 6rem -6rem 0 #FFF,
--12rem 12rem 0 #FFF, 12rem -12rem 0 #FFF,
--18rem 18rem 0 #FFF, 18rem -18rem 0 #FFF,
--24rem 24rem 0 #FFF, 24rem -24rem 0 #FFF,
--30rem 30rem 0 #FFF, 30rem -30rem 0 #FFF,
--36rem 36rem 0 #FFF, 36rem -36rem 0 #FFF,
--42rem 42rem 0 #FFF, 42rem -42rem 0 #FFF,
--48rem 48rem 0 #FFF, 48rem -48rem 0 #FFF
-;
-}*/
+.work-content{
+	height: 0;
+	overflow: hidden;
+	visibility: hidden;
+	opacity: 0;
+}
+.open .work-content{
+	visibility: visible;
+	opacity: 1;
+}
 /* HIRE ME */
 #form-wrap{
 padding-right: 3rem;
@@ -2114,34 +2128,39 @@ text-align: left;
 }
 
 /* LOADING */
-#loading{
-	position: fixed;
+.loading{
+	position: absolute;
 	left:0;
 	top:0;
 	z-index: 9999;
 	height: 100%;
 	width: 100%;
+	background: rgba(0,0,0,.8);
 	visibility: hidden;
 	opacity: 0;
-	background: -webkit-linear-gradient(#633e78, #230038);
-	background: linear-gradient(#633e78, #230038);
 	-webkit-transition: all 1s ease-out;
 	transition: all 1s ease-out;
 }
-body.loading{
+#loading-screen{
+	display: none !important;
+	position: fixed;
+	background: -webkit-linear-gradient(#633e78, #230038);
+	background: linear-gradient(#633e78, #230038);
+}
+body.load{
 	height: 100vh;
 	overflow: hidden;
 }
-body.loading #loading{
+.load .loading{
 	visibility: visible;
 	opacity: 1;	
 }
-#loading ul{
+.loading ul{
 	float:left;
 	width: 100%;
 	text-align: center;
 }
-#loading li{
+.loading li{
 	background :#FFF;
 	float:none;
 	display: inline-block;
@@ -2152,15 +2171,15 @@ body.loading #loading{
 	-webkit-animation: bouncedelay 1.4s infinite ease-in-out both;
     animation: bouncedelay 1.4s infinite ease-in-out both;
 }
-#loading .one{
+.loading .one{
 	-webkit-animation-delay: -0.32s;
     animation-delay: -0.32s;
 }
-#loading .two{
+.loading .two{
 	-webkit-animation-delay: -0.16s;
     animation-delay: -0.16s;
 }
-#loading .three{
+.loading .three{
 	
 }
 

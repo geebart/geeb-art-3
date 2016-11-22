@@ -41,13 +41,41 @@ jQuery(document).ready(function($){
 
 	};
 
+
+	// BUILD PROJECT GRID
+	function buildWorkGrid(){
+		var $projectsWrap = $('#work').find('.projects-wrap');
+		
+		$projectsWrap.height($projectsWrap.height());
+
+		var columnWidth = $projectsWrap.find('.project:first-child').width();
+		var columnHeight = columnWidth;
+		var columns = $(window).width() / columnWidth;
+		var rows = $projectsWrap.height() / columnWidth;
+
+		console.log(columnWidth);
+
+		$('#work .project').each(function(){
+			$(this).width(columnWidth)
+			$(this).height(columnWidth);
+		});
+
+		$('#work .project').each(function(index, value){
+			var leftMultiplier =  ((index + 1) % columns);
+			var topMultiplier =  Math.ceil((index + 1) / columns);
+			console.log(columns);
+			console.log(leftMultiplier + ' / ' + topMultiplier);
+			//$(this).attr('style', 'position:absolute; left:' + (leftMultiplier * columnWidth) + '; top:' + (topMultiplier * columnWidth) + ';');
+		});
+	}
+
 	// INSTAGRAM FEED
-	var feed = new Instafeed({
-        get: 'user',
-        userId: '476867387',
-        clientId: 'aa5b8f03eea749d5a68b84d892a50680'
-    });
-    feed.run();
+	// var feed = new Instafeed({
+//        get: 'user',
+//        userId: '476867387',
+//        clientId: 'aa5b8f03eea749d5a68b84d892a50680'
+//    });
+//    feed.run();
 
 	// SLICK SLIDER
 	var slickVars = {
@@ -65,10 +93,8 @@ jQuery(document).ready(function($){
 		var $slider = $('#headshot-frame').find('.slider');
 		var $active = $slider.find('.active');
 		if($active.next().length){
-			console.log('FIRE1!');
 			$active.removeClass('active').next().addClass('active');
 		}else{
-			console.log('FIRE2!');
 			$active.removeClass('active').siblings(':first-child').addClass('active');
 		}
 	}
@@ -137,6 +163,7 @@ jQuery(document).ready(function($){
 		// console.log('Images Loaded!');
 		$('body').addClass('images-loaded');
 		$('#greet-hero').addClass('active');
+		buildWorkGrid();
 	});
 
 	// ANIMATE SCROLL
@@ -211,6 +238,42 @@ jQuery(document).ready(function($){
 		$('.frame-wrap').toggleClass('swap');
 	});
 
+	// SETUP WORK CONTENT STORAGE
+	var workContent = [];
+	$('#work .project').each(function(){
+		workContent.push('');
+	});
+
+	// PROJECT CLICKS
+	$(document).on('click', '.project > a', function(event){
+		// PREVENT CLICK
+		event.preventDefault();
+		// SETUP
+		var url = $(this).attr('href');
+		var $parent = $(this).parents('.project');
+		var index = $parent.index();
+		// CHECK FOR CONTENT IN STORAGE FIRST
+		if(!workContent[index].length){
+			$parent.addClass('load');
+			$.get(url, function(data){
+				setTimeout(function(){
+					$parent.removeClass('load').before($parent.clone().addClass('clone')).addClass('open');
+				}, 700);
+				setTimeout(function(){
+					$parent.height($parent.height()).addClass('width');
+				}, 800);
+				setTimeout(function(){
+					$parent.find('.work-content').html(data);
+					$parent.addClass('height').height($parent.parent().height());
+				}, 1300);
+				console.log(data);
+			});
+		} else{
+			$parent.find('.work-content').html(workContent[index]);
+			console.log('FIRE2!');
+		}
+	});
+
 });
 
 // YOUTUBE VIDEO HERO BACKGROUND
@@ -257,6 +320,7 @@ function onYouTubeIframeAPIReady() {
 }
 
 function resizePlayer(){
+	var leftOffset = 0;
 	$player = $('#player');
 	$player.attr('style', '');
 	playerWidth = $hero.width();
@@ -282,8 +346,8 @@ function onPlayerReady(event){
 }
 
 function onPlayerStateChange(event) {
-	if (event.data === YT.PlayerState.PLAYING && $body.hasClass('loading')){
-		$body.removeClass('loading');
+	if (event.data === YT.PlayerState.PLAYING && $body.hasClass('load')){
+		$body.removeClass('load');
 	} else if (event.data === YT.PlayerState.ENDED){
 		player.playVideo(); 
 	}
