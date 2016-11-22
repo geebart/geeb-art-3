@@ -239,11 +239,16 @@ z-index: 1;
 .vpw-3{width:33.33%;}
 .vpw-4{width:25%;}
 .vpw-5{width:20%;}
+.vpw-20{width: 20%;}
+.vpw-30{width: 30%;}
+.vpw-60{width: 60%;}
+.vpw-70{width: 70%;}
+.vpw-80{width: 80%}
 /* HEIGHT CLASSES */
-.vph-1{height:100rem;}
+/*.vph-1{height:100rem;}
 .vph-2{height:50rem;}
 .vph-3{height:33.33rem;}
-.vph-4{height:25rem;}
+.vph-4{height:25rem;}*/
 /* TABLE STYLES */
 .table{
 display: table;
@@ -372,8 +377,8 @@ z-index: 1;
 background: rgba(0,0,0,.65);
 }
 #greet-hero h1, #greet-hero h2, #greet-hero .center{
--webkit-transition: background .3s ease-out, transform .6s ease-out 1.5s, visibility .6s ease-out 1.5s, opacity .6s ease-out 1.5s;
-transition: background .3s ease-out, transform .6s ease-out 1.5s, visibility .6s ease-out 1.5s, opacity .6s ease-out 1.5s;
+-webkit-transition: background .3s ease-out, transform .6s ease-out .8s, visibility .6s ease-out .8s, opacity .6s ease-out .8s;
+transition: background .3s ease-out, transform .6s ease-out .8s, visibility .6s ease-out .8s, opacity .6s ease-out .8s;
 vertical-align: initial;
 visibility: hidden;
 opacity: 0;
@@ -499,6 +504,7 @@ padding: .5rem 1rem;
 .button.dark:hover{
 	color: #FFF;
 	background: #111;
+	border-color: #111;
 	box-shadow: 0 .5rem 0 #000;
 }
 .loading .button{
@@ -1342,27 +1348,36 @@ overflow: hidden;
 -webkit-transition: all .5s ease-out;
 transition: all .5s ease-out;
 }
-#work ul{
+#work .projects-wrap{
 position: relative;
 padding:0;
 margin:0;
 }
-.project.open{
-	z-index: 9;
-}
-.project.width{
-	position: absolute;
-	left:0;
-	top:0;
-	width: 100%;
-}
-.project.height{
-	height: 100%;
-}
-}
-.project .background, .project .logo, .project .loading{
+.project h3{
+float:left;
+height: auto;
+width: 0;
+padding: 0;
+margin: 0;
+overflow: hidden;
+text-align: center;
+visibility: hidden;
+opacity: 1;
 -webkit-transition: all .3s ease-out;
 transition: all .3s ease-out;
+}
+.project.open h3{
+width: 100%;
+opacity: 1;
+visibility: visible;
+}
+.project.open{
+z-index: 9;
+background: rgba(0,0,0,.85);
+}
+.project .logo, .project .loading, .project .background, .project .background:after, .project .project-card{
+-webkit-transition: all .3s ease-out !important;
+transition: all .3s ease-out !important;
 }
 .logo{
 position: absolute;
@@ -1372,7 +1387,7 @@ z-index: 3;
 height: 100%;
 opacity: 0;
 }
-.project:hover .logo{
+.project:hover .logo, .project.open .logo{
 opacity: 1;
 box-shadow: inset 0 0 8rem rgba(0,0,0,.3);
 cursor: pointer;
@@ -1381,20 +1396,26 @@ cursor: pointer;
 position: relative;
 z-index: 0;
 }
-.project:hover .background{
+.project:hover .background, .project.open .background{
 -webkit-filter: grayscale(100);
 filter: grayscale(100);
 transform: perspective(500px) translateZ(2rem);
 visibility: visible;
 opacity: .8;
 }
+.project.open .logo, .project.open .background, .project.open .loading{
+	width: 10rem;
+	height: 10rem;
+	transform: perspective(500px) translateZ(0) translateX(4rem) translateY(3rem);
+}
 .project .background img{
 position: relative;
 z-index: 1;
 }
-.project.width .background, .project.width .logo, .project.width .loading{
-	width: 10rem;
-	height: 10rem;
+.project.open .project-card{
+width: 100%;
+height: 15.8rem;
+background: #333;
 }
 .background:after{
 position: absolute;
@@ -1403,22 +1424,121 @@ z-index: 2;
 visibility: hidden;
 opacity: 0;
 box-shadow: inset 0 0 4rem rgba(0,0,0,1);
--webkit-transition: all .3s ease-out;
-transition: all .3s ease-out;
 }
 .project .center{
 padding: 2rem 0 6rem;
 }
+.project-card{
+overflow: hidden;
+position: relative;
+width: 100%;
+height: 100%;
+}
 .work-content{
-	height: 0;
-	overflow: hidden;
-	visibility: hidden;
-	opacity: 0;
+overflow: hidden;
+visibility: hidden;
+opacity: 0;
+position: absolute;
+height: 100%;
+padding: 6rem 0;
 }
 .open .work-content{
-	visibility: visible;
-	opacity: 1;
+visibility: visible;
+opacity: 1;
 }
+.work-content h4{
+margin: 0 0 6rem;
+}
+.work-content .tabs{
+text-align: center;
+}
+.work-content .tabs li{
+list-style: none;
+width: auto;
+display: inline-block;
+float: none;
+}
+.work-content .tabs a{
+text-decoration: none;
+text-transform: uppercase;
+font-weight: bold;
+border: .5rem solid transparent;
+padding: 0 1rem;
+margin: 0 1rem;
+}
+.work-content .tabs a:hover{
+border-bottom-color:#888;
+color:#FFF;
+}
+.work-content .tabs .active a{
+border-bottom-color:#FFF;
+color: #FFF;
+}
+.work-content .sub-project{
+	padding: 4rem 0;
+}
+.sub-project{
+	position: relative;
+	background-size: cover;
+}
+.sub-project .screen{
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 100%;
+	z-index: 0;
+	background: rgba(0,0,0,.6);
+}
+.sub-project .sub-project-content{
+	position: relative;
+	z-index: 1;
+	padding: 0 6rem 0 4rem;
+}
+.project h5, .project h6{
+	text-align: left;
+}
+.task-list{
+	position: absolute;
+	right:0;
+	top:0;
+	z-index: 1;
+	height: 100%;
+	padding: 2rem 4rem;
+	background: rgba(0,0,0,.5);
+}
+.task-list h6{
+	margin-bottom: 2rem;
+}
+.task-list ul{
+	padding: 0;
+	margin: 0;
+}
+.task-list li{
+	font-size: 1.4rem;
+	list-style: none;
+	margin: 0 0 1rem;
+}
+.sub-project:nth-child(even) .task-list{
+	left: 0;
+	right: auto;
+}
+.sub-project:nth-child(even) .sub-project-content{
+	float:right;
+}
+.project .close-project{
+	font-size: 10rem;
+	line-height: 1;
+	margin: 3rem 6rem;
+	position: absolute;
+	right: 0;
+	top: 0;
+	color: #EEE;
+	text-decoration: none;
+}
+.project .close-project:hover{
+	color:#EEE;
+}
+
 /* HIRE ME */
 #form-wrap{
 padding-right: 3rem;

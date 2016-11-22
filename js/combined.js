@@ -48,24 +48,28 @@ jQuery(document).ready(function($){
 		
 		$projectsWrap.height($projectsWrap.height());
 
+		var projectsWidth = $projectsWrap.width();
 		var columnWidth = $projectsWrap.find('.project:first-child').width();
 		var columnHeight = columnWidth;
 		var columns = $(window).width() / columnWidth;
 		var rows = $projectsWrap.height() / columnWidth;
 
-		console.log(columnWidth);
+		var columnWidthPercent = (columnWidth / projectsWidth) * 100;
 
-		$('#work .project').each(function(){
-			$(this).width(columnWidth)
-			$(this).height(columnWidth);
-		});
+		// OVERRIDE WIDTH AND HEIGHT WITH INLINE
+		$('#work .project').width(columnWidthPercent + '%').height(columnWidthPercent + '%');
 
+		// ABSOLUTE POSITIONING FOR EACH
 		$('#work .project').each(function(index, value){
-			var leftMultiplier =  ((index + 1) % columns);
-			var topMultiplier =  Math.ceil((index + 1) / columns);
-			console.log(columns);
-			console.log(leftMultiplier + ' / ' + topMultiplier);
-			//$(this).attr('style', 'position:absolute; left:' + (leftMultiplier * columnWidth) + '; top:' + (topMultiplier * columnWidth) + ';');
+			var leftMultiplier = index % columns;
+			var topMultiplier = Math.floor(index / (columns));
+			// console.log(index + 1);
+			// console.log(leftMultiplier + '/' + topMultiplier);
+			$(this).css({
+				'position': 'absolute',
+				'left': (leftMultiplier * columnWidthPercent) + '%',
+				'top': (topMultiplier * columnWidthPercent) + '%'
+			});
 		});
 	}
 
@@ -156,13 +160,12 @@ jQuery(document).ready(function($){
 		$(this).attr('style', 'background-image: url(images/' + $(this).attr("data-background-image") + ')');
 	});
 
-	console.log($('.data-background-image').attr("data-background-image"));
+	// console.log($('.data-background-image').attr("data-background-image"));
 
 	// IMAGES LOADED
 	$('section').imagesLoaded(function(){
 		// console.log('Images Loaded!');
 		$('body').addClass('images-loaded');
-		$('#greet-hero').addClass('active');
 		buildWorkGrid();
 	});
 
@@ -171,17 +174,20 @@ jQuery(document).ready(function($){
 		e.preventDefault();
 		// GET HEADER HEIGHT
 		var headerHeight = $('header').outerHeight();
-		// if($('body').hasClass('mobile')){
-		// 	headerHeight = 0;
-		// 	console.log('FIRE!');
-		// }
-		// CHANGE SCROLL BASED ON SECTION
-		if($(this).parents('section').attr('id') == 'greet-hero'){
-			$("html, body").animate({scrollTop: $($(this).attr('data-scroll')).position().top}, 500);
-		} else if($(this).parents('section').attr('id') == 'skills'){
-			$("html, body").animate({scrollTop: ($($(this).attr('data-scroll')).position().top) - (headerHeight + parseInt($('#hire-me').css('padding-top')) + 20)}, 500);
-		} else{
-			$("html, body").animate({scrollTop: ($($(this).attr('data-scroll')).position().top) - (headerHeight)}, 500);
+		// SWITCH BASED ON DESTINATION
+		switch($(this).attr('data-scroll')){
+			case '#hire-me':
+				$("html, body").animate({scrollTop: $($(this).attr('data-scroll')).position().top}, 500);
+			break;
+			case '#origins':
+				$("html, body").animate({scrollTop: $($(this).attr('data-scroll')).position().top + 80}, 500);
+			break;
+			case '#denver':
+				$("html, body").animate({scrollTop: ($($(this).attr('data-scroll')).position().top) - (headerHeight + parseInt($('#hire-me').css('padding-top')) + 20)}, 500);
+			break;
+			default:
+				$("html, body").animate({scrollTop: ($($(this).attr('data-scroll')).position().top) - (headerHeight)}, 500);
+			break;
 		}
 	});
 
@@ -245,32 +251,41 @@ jQuery(document).ready(function($){
 	});
 
 	// PROJECT CLICKS
-	$(document).on('click', '.project > a', function(event){
+	$(document).on('click', '.project .logo', function(event){
 		// PREVENT CLICK
 		event.preventDefault();
-		// SETUP
+		// SETUP VARS
 		var url = $(this).attr('href');
 		var $parent = $(this).parents('.project');
 		var index = $parent.index();
-		// CHECK FOR CONTENT IN STORAGE FIRST
-		if(!workContent[index].length){
-			$parent.addClass('load');
-			$.get(url, function(data){
-				setTimeout(function(){
-					$parent.removeClass('load').before($parent.clone().addClass('clone')).addClass('open');
-				}, 700);
-				setTimeout(function(){
-					$parent.height($parent.height()).addClass('width');
-				}, 800);
-				setTimeout(function(){
-					$parent.find('.work-content').html(data);
-					$parent.addClass('height').height($parent.parent().height());
-				}, 1300);
-				console.log(data);
-			});
+		// OPEN OR CLOSED?
+		if(!$parent.hasClass('open')){
+			// CHECK FOR CONTENT IN STORAGE FIRST
+			if(!workContent[index].length){
+				$parent.addClass('load');
+				// AJAX GET HTML
+				$.get(url, function(data){
+					setTimeout(function(){
+						// ADD LOADING ANIM - CLONE HTML FOR PLACEHOLDER - START OPEN ANIMATIONS
+						$parent.removeClass('load').before($parent.clone().addClass('clone')).addClass('open');
+					}, 700);
+					setTimeout(function(){
+						// ANIMATE FULL WIDTH
+						$parent.width('100%');
+					}, 800);
+					setTimeout(function(){
+						// ADD NEW HTML AND ANIMATIE HEIGHT
+						$parent.find('.work-content').html(data);
+						$parent.height('100%');
+					}, 1300);
+					// console.log(data);
+				});
+			} else{
+				// SEE IF CONTENT IS CACHED ALREADY
+				$parent.find('.work-content').html(workContent[index]);
+			}
 		} else{
-			$parent.find('.work-content').html(workContent[index]);
-			console.log('FIRE2!');
+			// NOTHING YET
 		}
 	});
 
@@ -347,8 +362,12 @@ function onPlayerReady(event){
 
 function onPlayerStateChange(event) {
 	if (event.data === YT.PlayerState.PLAYING && $body.hasClass('load')){
+		// YOUTUBE VIDEO READY
 		$body.removeClass('load');
+		// TRIGGER HERO ANIMATIONS
+		$('#greet-hero').addClass('active');
 	} else if (event.data === YT.PlayerState.ENDED){
+		// LOOP VIDEO ENDLESSLY
 		player.playVideo(); 
 	}
 }
