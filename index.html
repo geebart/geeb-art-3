@@ -768,6 +768,16 @@
 			<div id="instafeed"></div>
 		</section>
 	</main>
+	<div id="work-slide">
+		<div class="work-slide-nav">
+			<div class="wrap">
+				<ul clas="row">
+					<li class="right"><a title="Back to previous screen" class="back">&times;</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="work-slide-content"><!-- AJAX CONTENT --></div>
+	</div>
 	<footer>
 		<div class="wrap">
 			<div class="row">
@@ -787,7 +797,7 @@
 					<li><span class="icon">&#xeac5;</span> thegreatgeeber</a></li>
 				</ul>
 				<hr>
-				<p class="vpc">&copy; Christopher Brian Smith 2016 &mdash; <a href="https://github.com/geebart/geeb-art-3" title="GeebArt 3 on GitHub" target="_blank">Hosted on GitHub</a></p>
+				<p class="vpc">&copy; Chris "Geeb" Smith 2016 &mdash; <a href="https://github.com/geebart/geeb-art-3" title="GeebArt 3 on GitHub" target="_blank">Hosted on GitHub</a></p>
 			</div>
 		</div>
 	</footer>
@@ -818,25 +828,25 @@
 	<script src="js/jquery.js"></script>
 	<script type="text/javascript" src="http://wurfl.io/wurfl.js"></script>
 	<script src="js/combined.js"></script>
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBueL7aR7e7RApFcanrpkUFz9zPhB8ht0&callback=initMap" async defer></script>
+	<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBueL7aR7e7RApFcanrpkUFz9zPhB8ht0&callback=initMap" async defer></script> -->
 	<script>
-	var mapStyles = [{"featureType":"landscape","stylers":[{"saturation":-100},{"lightness":65},{"visibility":"on"}]},{"featureType":"poi","stylers":[{"saturation":-100},{"lightness":51},{"visibility":"simplified"}]},{"featureType":"road.highway","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"road.arterial","stylers":[{"saturation":-100},{"lightness":30},{"visibility":"on"}]},{"featureType":"road.local","stylers":[{"saturation":-100},{"lightness":40},{"visibility":"on"}]},{"featureType":"transit","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"administrative.province","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"labels","stylers":[{"visibility":"on"},{"lightness":-25},{"saturation":-100}]},{"featureType":"water","elementType":"geometry","stylers":[{"hue":"#ffff00"},{"lightness":-25},{"saturation":-97}]}]
-	var map;
-	function initMap() {
-		map = new google.maps.Map(document.getElementById('map'), {
-			center: {lat: 39.74, lng: -105},
-			zoom: 12,
-			disableDefaultUI: true,
-			styles: mapStyles,
-			zoomControl: false,
-			fullscreenControl: false,
-			scrollwheel: false,
-		    navigationControl: false,
-		    mapTypeControl: false,
-		    scaleControl: false,
-		    draggable: false
-		});
-	}
+	// var mapStyles = [{"featureType":"landscape","stylers":[{"saturation":-100},{"lightness":65},{"visibility":"on"}]},{"featureType":"poi","stylers":[{"saturation":-100},{"lightness":51},{"visibility":"simplified"}]},{"featureType":"road.highway","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"road.arterial","stylers":[{"saturation":-100},{"lightness":30},{"visibility":"on"}]},{"featureType":"road.local","stylers":[{"saturation":-100},{"lightness":40},{"visibility":"on"}]},{"featureType":"transit","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"administrative.province","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"labels","stylers":[{"visibility":"on"},{"lightness":-25},{"saturation":-100}]},{"featureType":"water","elementType":"geometry","stylers":[{"hue":"#ffff00"},{"lightness":-25},{"saturation":-97}]}]
+	// var map;
+	// function initMap() {
+	// 	map = new google.maps.Map(document.getElementById('map'), {
+	// 		center: {lat: 39.74, lng: -105},
+	// 		zoom: 12,
+	// 		disableDefaultUI: true,
+	// 		styles: mapStyles,
+	// 		zoomControl: false,
+	// 		fullscreenControl: false,
+	// 		scrollwheel: false,
+	// 	    navigationControl: false,
+	// 	    mapTypeControl: false,
+	// 	    scaleControl: false,
+	// 	    draggable: false
+	// 	});
+	// }
 	</script>
 </body>
 </html>

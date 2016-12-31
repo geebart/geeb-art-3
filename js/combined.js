@@ -1,6 +1,12 @@
 // DOCUMENT READY
 jQuery(document).ready(function($){
 
+	// GET HEADER HEIGHT
+	var headerHeight = $('header').outerHeight();
+	
+	// CACHED INT VALUE FOR SCROLLING
+	var rememberScroll = 0;
+
 	// MOBILE DETECTION FIRST
 	if(WURFL.is_mobile){$('body').addClass('mobile');}
 	
@@ -114,6 +120,8 @@ jQuery(document).ready(function($){
 	var $tmProgress = $tm.find('.progress');
 	var $window = $(window);
 	$tm.find('> ul > li').addClass('active');
+
+	// TIMELINE ON SCROLL
 	$(window).scroll(function(){
 		if($tm.isOnScreenWithOffset()){
 			$tm.find('> ul > li').each(function(){
@@ -171,9 +179,9 @@ jQuery(document).ready(function($){
 
 	// ANIMATE SCROLL
 	$(document).on('click', '.scroll', function(e){
+		// PREVENT CLICK
 		e.preventDefault();
-		// GET HEADER HEIGHT
-		var headerHeight = $('header').outerHeight();
+		
 		// SWITCH BASED ON DESTINATION
 		switch($(this).attr('data-scroll')){
 			case '#hire-me':
@@ -250,14 +258,35 @@ jQuery(document).ready(function($){
 		workContent.push('');
 	});
 
-	// PROJECT CLICKS
-	$(document).on('click', '.project .logo', function(event){
+	// PROJECT BACK BUTTON
+	$(document).on('click', '#work-slide .back, .work-slide-nav .logo .logo', function(event){
+
 		// PREVENT CLICK
 		event.preventDefault();
+
+		// REMOVE WORK SLIDE ACTIVE CLASS
+		$('body').removeClass('work-slide-active');
+
+		// SCROLL BACK TO PREVIOUS SECTION
+		$('html, body').scrollTop(rememberScroll);
+
+	});
+
+	// PROJECT CLICKS
+	$(document).on('click', '.project .logo', function(event){
+
+		// PREVENT CLICK
+		event.preventDefault();
+
 		// SETUP VARS
 		var url = $(this).attr('href');
 		var $parent = $(this).parents('.project');
 		var index = $parent.index();
+		var $workSlide = $('#work-slide');
+		var $workSlideContent = $workSlide.find('.work-slide-content');
+		rememberScroll = $(this).offset().top - headerHeight;
+		console.log(rememberScroll);
+
 		// OPEN OR CLOSED?
 		if(!$parent.hasClass('open')){
 			// CHECK FOR CONTENT IN STORAGE FIRST
@@ -266,17 +295,20 @@ jQuery(document).ready(function($){
 				// AJAX GET HTML
 				$.get(url, function(data){
 					setTimeout(function(){
-						// ADD LOADING ANIM - CLONE HTML FOR PLACEHOLDER - START OPEN ANIMATIONS
-						$parent.removeClass('load').before($parent.clone().addClass('clone')).addClass('open');
+						$('body').addClass('work-slide-active');
+						//$workSlide.find('.logo').html($parent.find('.project-card').html());
+						$parent.removeClass('load');
+						$workSlideContent.html(data);
+						$('body, html').scrollTop(0);
 					}, 700);
 					setTimeout(function(){
 						// ANIMATE FULL WIDTH
-						$parent.width('100%');
+						//$parent.width('100%');
 					}, 800);
 					setTimeout(function(){
 						// ADD NEW HTML AND ANIMATIE HEIGHT
-						$parent.find('.work-content').html(data);
-						$parent.height('100%');
+						//$parent.find('.work-content').html(data);
+						//$parent.height('100%');
 					}, 1300);
 					// console.log(data);
 				});
@@ -288,10 +320,11 @@ jQuery(document).ready(function($){
 			// NOTHING YET
 		}
 	});
-
+	$('.project:first-child .logo').trigger('click');
 });
 
 // YOUTUBE VIDEO HERO BACKGROUND
+// JQUERY FIX
 $ = jQuery;
 
 $body = $('body');
@@ -307,7 +340,7 @@ $player.width(playerWidth);
 var tag = document.createElement('script');
 var player;
 
-tag.src = "https://www.youtube.com/iframe_api";
+tag.src = "//www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
