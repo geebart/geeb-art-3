@@ -49,35 +49,44 @@ jQuery(document).ready(function($){
 
 
 	// BUILD PROJECT GRID
-	function buildWorkGrid(){
-		var $projectsWrap = $('#work').find('.projects-wrap');
+	// function buildWorkGrid(){
+	// 	var $projectsWrap = $('#work').find('.projects-wrap');
+
+	// 	// REMOVE INLINE STYLES
+	// 	$('#work .project').each(function(index, value){
+	// 		$(this).attr('style', '');
+	// 	});
 		
-		$projectsWrap.height($projectsWrap.height());
+	// 	$projectsWrap.height('auto');
 
-		var projectsWidth = $projectsWrap.width();
-		var columnWidth = $projectsWrap.find('.project:first-child').width();
-		var columnHeight = columnWidth;
-		var columns = $(window).width() / columnWidth;
-		var rows = $projectsWrap.height() / columnWidth;
+	// 	var projectsWidth = $projectsWrap.width();
+	// 	var columnWidth = $projectsWrap.find('.project:first-child').width();
+	// 	var columnHeight = columnWidth;
+	// 	var columns = $(window).width() / columnWidth;
+	// 	var rows = $projectsWrap.height() / columnWidth;
 
-		var columnWidthPercent = (columnWidth / projectsWidth) * 100;
+	// 	$projectsWrap.height($projectsWrap.height());
 
-		// OVERRIDE WIDTH AND HEIGHT WITH INLINE
-		$('#work .project').width(columnWidthPercent + '%').height(columnWidthPercent + '%');
+	// 	var columnWidthPercent = (columnWidth / projectsWidth) * 100;
 
-		// ABSOLUTE POSITIONING FOR EACH
-		$('#work .project').each(function(index, value){
-			var leftMultiplier = index % columns;
-			var topMultiplier = Math.floor(index / (columns));
-			// console.log(index + 1);
-			// console.log(leftMultiplier + '/' + topMultiplier);
-			$(this).css({
-				'position': 'absolute',
-				'left': (leftMultiplier * columnWidthPercent) + '%',
-				'top': (topMultiplier * columnWidthPercent) + '%'
-			});
-		});
-	}
+	// 	console.log(columnWidth + ' / ' + projectsWidth + ' = ' + (columnWidth / projectsWidth));
+
+	// 	// OVERRIDE WIDTH AND HEIGHT WITH INLINE
+	// 	$('#work .project').width(columnWidthPercent + '%');//.height(columnWidthPercent + '%');
+
+	// 	// ABSOLUTE POSITIONING FOR EACH
+	// 	$('#work .project').each(function(index, value){
+	// 		var leftMultiplier = index % columns;
+	// 		var topMultiplier = Math.floor(index / (columns));
+	// 		// console.log(index + 1);
+	// 		// console.log(leftMultiplier + '/' + topMultiplier);
+	// 		$(this).css({
+	// 			'position': 'absolute',
+	// 			'left': (leftMultiplier * columnWidth),
+	// 			'top': (topMultiplier * columnWidth)
+	// 		});
+	// 	});
+	// }
 
 	// INSTAGRAM FEED
 	// var feed = new Instafeed({
@@ -154,6 +163,11 @@ jQuery(document).ready(function($){
 		}
 	});
 
+	// WINDOW RESIZE
+	// $(window).resize(function(){
+
+	// });
+
 	// SECTION PARALLAX IMAGES
 	// $('.parallax').each(function(){
 	// 	$(this).parallax({
@@ -171,10 +185,13 @@ jQuery(document).ready(function($){
 	// console.log($('.data-background-image').attr("data-background-image"));
 
 	// IMAGES LOADED
-	$('section').imagesLoaded(function(){
+	$('body').imagesLoaded(function(){
 		// console.log('Images Loaded!');
 		$('body').addClass('images-loaded');
-		buildWorkGrid();
+		//buildWorkGrid();
+		// setTimeout(function(){
+		// 	$(window).resize();
+		// }, 800);
 	});
 
 	// ANIMATE SCROLL
@@ -259,7 +276,7 @@ jQuery(document).ready(function($){
 	});
 
 	// PROJECT BACK BUTTON
-	$(document).on('click', '#work-slide .back, .work-slide-nav .logo .logo', function(event){
+	$(document).on('click', '#work-slide .back', function(event){
 
 		// PREVENT CLICK
 		event.preventDefault();
@@ -272,8 +289,53 @@ jQuery(document).ready(function($){
 
 	});
 
+	// PROJECT QUICK NAV NEXT
+	$(document).on('click', '.work-slide-nav .next a', function(event){
+
+		console.log('FIRE1!');
+
+		// PREVENT CLICK
+		event.preventDefault();
+
+		// CACHE NEXT PROJECT
+		var $thisProject = $('.projects-wrap .project.active');
+		var $nextProject = $thisProject.next();
+
+		// NEXT PROJECT
+		if($nextProject.length){
+			$nextProject.find('.logo').trigger('click');
+		} else{
+			console.log('HERE!');
+			$thisProject.siblings('.project:first-child').find('.logo').trigger('click');
+		}
+
+	});
+
+	// PROJECT QUICK PREV NEXT
+	$(document).on('click', '.work-slide-nav .prev a', function(event){
+
+		console.log('FIRE2!');
+
+		// PREVENT CLICK
+		event.preventDefault();
+
+		// CACHE NEXT PROJECT
+		var $thisProject = $('.projects-wrap .project.active');
+		var $prevProject = $thisProject.prev();
+
+		// NEXT PROJECT
+		if($prevProject.length){
+			$prevProject.find('.logo').trigger('click');
+		} else{
+			$thisProject.siblings('.project:last-child').find('.logo').trigger('click');
+		}
+
+	});
+
 	// PROJECT CLICKS
 	$(document).on('click', '.project .logo', function(event){
+
+		console.log('FIRE3!');
 
 		// PREVENT CLICK
 		event.preventDefault();
@@ -285,7 +347,10 @@ jQuery(document).ready(function($){
 		var $workSlide = $('#work-slide');
 		var $workSlideContent = $workSlide.find('.work-slide-content');
 		rememberScroll = $(this).offset().top - headerHeight;
-		console.log(rememberScroll);
+
+		// REMOVE/ADD ACTIVE CLASSES
+		$parent.siblings('.active').removeClass('active');
+		$parent.addClass('active');
 
 		// OPEN OR CLOSED?
 		if(!$parent.hasClass('open')){
@@ -320,7 +385,6 @@ jQuery(document).ready(function($){
 			// NOTHING YET
 		}
 	});
-	$('.project:first-child .logo').trigger('click');
 });
 
 // YOUTUBE VIDEO HERO BACKGROUND
