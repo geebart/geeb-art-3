@@ -1592,6 +1592,9 @@ color: #FFF;
 .project .close-project:hover{
 	color:#EEE;
 }
+.work-slide-hero img {
+    max-width: 46rem;
+}
 .work-slide-hero .bottom{
 	position: absolute;
 	bottom: 0;
