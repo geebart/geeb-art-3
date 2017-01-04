@@ -228,7 +228,7 @@ jQuery(document).ready(function($){
 		$('body').removeClass('work-slide-active');
 
 		// SCROLL BACK TO PREVIOUS SECTION
-		$('html, body').scrollTop(rememberScroll);
+		$('html, body').scrollTop($('.projects-wrap .project.active').offset().top - headerHeight);
 
 		// CLEAN UP WINDOW LOCATION HASH
 		location.hash = '';
@@ -293,7 +293,7 @@ jQuery(document).ready(function($){
 		var index = $parent.index();
 		var $workSlide = $('#work-slide');
 		var $workSlideContent = $workSlide.find('.work-slide-content');
-		rememberScroll = $(this).offset().top - headerHeight;
+		rememberScroll = $parent.offset().top - headerHeight;
 
 		// REMOVE/ADD ACTIVE CLASSES
 		$parent.siblings('.active').removeClass('active');
