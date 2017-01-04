@@ -47,55 +47,6 @@ jQuery(document).ready(function($){
 
 	};
 
-
-	// BUILD PROJECT GRID
-	// function buildWorkGrid(){
-	// 	var $projectsWrap = $('#work').find('.projects-wrap');
-
-	// 	// REMOVE INLINE STYLES
-	// 	$('#work .project').each(function(index, value){
-	// 		$(this).attr('style', '');
-	// 	});
-		
-	// 	$projectsWrap.height('auto');
-
-	// 	var projectsWidth = $projectsWrap.width();
-	// 	var columnWidth = $projectsWrap.find('.project:first-child').width();
-	// 	var columnHeight = columnWidth;
-	// 	var columns = $(window).width() / columnWidth;
-	// 	var rows = $projectsWrap.height() / columnWidth;
-
-	// 	$projectsWrap.height($projectsWrap.height());
-
-	// 	var columnWidthPercent = (columnWidth / projectsWidth) * 100;
-
-	// 	console.log(columnWidth + ' / ' + projectsWidth + ' = ' + (columnWidth / projectsWidth));
-
-	// 	// OVERRIDE WIDTH AND HEIGHT WITH INLINE
-	// 	$('#work .project').width(columnWidthPercent + '%');//.height(columnWidthPercent + '%');
-
-	// 	// ABSOLUTE POSITIONING FOR EACH
-	// 	$('#work .project').each(function(index, value){
-	// 		var leftMultiplier = index % columns;
-	// 		var topMultiplier = Math.floor(index / (columns));
-	// 		// console.log(index + 1);
-	// 		// console.log(leftMultiplier + '/' + topMultiplier);
-	// 		$(this).css({
-	// 			'position': 'absolute',
-	// 			'left': (leftMultiplier * columnWidth),
-	// 			'top': (topMultiplier * columnWidth)
-	// 		});
-	// 	});
-	// }
-
-	// INSTAGRAM FEED
-	// var feed = new Instafeed({
-//        get: 'user',
-//        userId: '476867387',
-//        clientId: 'aa5b8f03eea749d5a68b84d892a50680'
-//    });
-//    feed.run();
-
 	// SLICK SLIDER
 	var slickVars = {
 		autoplay: true,
@@ -163,35 +114,16 @@ jQuery(document).ready(function($){
 		}
 	});
 
-	// WINDOW RESIZE
-	// $(window).resize(function(){
-
-	// });
-
-	// SECTION PARALLAX IMAGES
-	// $('.parallax').each(function(){
-	// 	$(this).parallax({
-	// 		imageSrc: $(this).attr("data-background-image"),
-	// 		speed: 0.9,
-	// 		bleed: 80
-	// 	});
-	// });
-
 	// OTHER BACKGROUND IMAGES
 	$('.data-background-image').each(function(){
 		$(this).attr('style', 'background-image: url(images/' + $(this).attr("data-background-image") + ')');
 	});
 
-	// console.log($('.data-background-image').attr("data-background-image"));
-
 	// IMAGES LOADED
-	$('body').imagesLoaded(function(){
-		// console.log('Images Loaded!');
+	$body.imagesLoaded(function(){
+
+		// ADD IMAGES LOADED CLASS
 		$('body').addClass('images-loaded');
-		//buildWorkGrid();
-		// setTimeout(function(){
-		// 	$(window).resize();
-		// }, 800);
 
 		// CHECK FOR HASH
 		if(location.hash){
@@ -298,6 +230,9 @@ jQuery(document).ready(function($){
 		// SCROLL BACK TO PREVIOUS SECTION
 		$('html, body').scrollTop(rememberScroll);
 
+		// CLEAN UP WINDOW LOCATION HASH
+		location.hash = '';
+
 	});
 
 	// PROJECT QUICK NAV NEXT
@@ -350,9 +285,7 @@ jQuery(document).ready(function($){
 		event.preventDefault();
 
 		// SHOW LOADING ANIMATION FROM INSIDE WORK SLIDE
-		if($body.hasClass('work-slide-active')){
-			$body.addClass('load');
-		}
+		$body.addClass('load');
 
 		// SETUP VARS
 		var url = $(this).attr('href');
@@ -373,23 +306,12 @@ jQuery(document).ready(function($){
 				$parent.addClass('load');
 				// AJAX GET HTML
 				$.get(url, function(data){
+					$('body').addClass('work-slide-active');
 					setTimeout(function(){
-						$('body').addClass('work-slide-active');
-						//$workSlide.find('.logo').html($parent.find('.project-card').html());
-						$parent.removeClass('load');
 						$workSlideContent.html(data);
-						$('body, html').scrollTop(0);
-					}, 700);
-					setTimeout(function(){
-						// ANIMATE FULL WIDTH
-						//$parent.width('100%');
+						$parent.removeClass('load');
 					}, 800);
-					setTimeout(function(){
-						// ADD NEW HTML AND ANIMATIE HEIGHT
-						//$parent.find('.work-content').html(data);
-						//$parent.height('100%');
-					}, 1300);
-					// console.log(data);
+					$('body, html').scrollTop(0);
 				});
 			} else{
 				// SEE IF CONTENT IS CACHED ALREADY
@@ -401,9 +323,11 @@ jQuery(document).ready(function($){
 
 		// HIDE LOADING ANIMATION FROM INSIDE WORK SLIDE
 		if($body.hasClass('work-slide-active')){
-			setTimeout(function(){
-				$body.removeClass('load');
-			}, 1400);
+			$('#work-slide').imagesLoaded(function(){
+				setTimeout(function(){
+					$body.removeClass('load');
+				}, 1200);
+			});
 		}
 
 		// ADD HASH
