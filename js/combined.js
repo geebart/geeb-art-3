@@ -192,6 +192,13 @@ jQuery(document).ready(function($){
 		// setTimeout(function(){
 		// 	$(window).resize();
 		// }, 800);
+
+		// CHECK FOR HASH
+		if(location.hash){
+			var $target = $('.projects-wrap').find('.project[data-project="' + location.hash.replace('#', '') + '"]');
+			$("html, body").animate({scrollTop: $target.position().top}, 500);
+			$target.find('.logo').trigger('click');
+		}
 	});
 
 	// ANIMATE SCROLL
@@ -339,8 +346,6 @@ jQuery(document).ready(function($){
 	// PROJECT CLICKS
 	$(document).on('click', '.project .logo', function(event){
 
-		console.log('FIRE3!');
-
 		// PREVENT CLICK
 		event.preventDefault();
 
@@ -400,6 +405,9 @@ jQuery(document).ready(function($){
 				$body.removeClass('load');
 			}, 1400);
 		}
+
+		// ADD HASH
+		location.hash = $parent.attr('data-project');
 	});
 });
 
@@ -460,7 +468,7 @@ function resizePlayer(){
 	}
 	$player.width(playerWidth);
 	$player.height(playerHeight);
-	$player.css('left', leftOffset);
+	//$player.css('left', leftOffset);
 	player.setSize(playerWidth, playerHeight);
 }
 
