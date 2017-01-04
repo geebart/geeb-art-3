@@ -214,6 +214,10 @@ jQuery(document).ready(function($){
 				$("html, body").animate({scrollTop: ($($(this).attr('data-scroll')).position().top) - (headerHeight)}, 500);
 			break;
 		}
+
+		if($(this).hasClass('hire-me-trigger')){
+			$('#headshot-frame .toggle-frame').trigger('click');
+		}
 	});
 
 	// FORM VALIDATION
@@ -340,6 +344,11 @@ jQuery(document).ready(function($){
 		// PREVENT CLICK
 		event.preventDefault();
 
+		// SHOW LOADING ANIMATION FROM INSIDE WORK SLIDE
+		if($body.hasClass('work-slide-active')){
+			$body.addClass('load');
+		}
+
 		// SETUP VARS
 		var url = $(this).attr('href');
 		var $parent = $(this).parents('.project');
@@ -383,6 +392,13 @@ jQuery(document).ready(function($){
 			}
 		} else{
 			// NOTHING YET
+		}
+
+		// HIDE LOADING ANIMATION FROM INSIDE WORK SLIDE
+		if($body.hasClass('work-slide-active')){
+			setTimeout(function(){
+				$body.removeClass('load');
+			}, 1400);
 		}
 	});
 });
