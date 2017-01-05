@@ -2617,8 +2617,11 @@ body.mobile .non-mobile{display:none !important;}
 100% {transform:translateX(170rem);} 
 }
 @media (max-device-width: 1024px){
-	#greet-hero h1 br{
+	.tablet #greet-hero h1 br{
 		display: none;
+	}
+	.tablet #greet-hero h1 .non-mobile{
+		display: block;
 	}
 }
 @media (max-width:960px){
