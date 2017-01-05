@@ -452,7 +452,7 @@ text-shadow: 0 0 6rem rgba(0,0,0,.3);
 line-height: 1.4;
 float:left;
 width: 100%;
-margin-bottom: 2rem;
+margin-bottom: 2.5rem;
 transform: translateY(-1rem);
 transition-delay: 1.7s;
 }
@@ -662,7 +662,7 @@ background: -webkit-linear-gradient(top, #2c2f89 0%,#7db9e8 100%);
 background: linear-gradient(to bottom, #2c2f89 0%,#7db9e8 100%);
 }
 #origins .wrap{
-max-width: 75rem;
+max-width: 68rem;
 }
 #origins .center{
 float:none;
@@ -2485,10 +2485,10 @@ opacity: 1;
 	color:#FFF;
 }
 .prev a:hover{
-	transform: translateX(1rem);
+	transform: translateX(-.5rem);
 }
 .next a:hover{
-	transform: translateX(-1rem);
+	transform: translateX(.5rem);
 }
 
 /* LOADING */
