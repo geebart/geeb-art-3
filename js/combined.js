@@ -221,6 +221,9 @@ jQuery(document).ready(function($){
 	// PROJECT BACK BUTTON
 	$(document).on('click', '#work-slide .back', function(event){
 
+		// CLEAN UP WINDOW LOCATION HASH
+		location.hash = '';
+
 		// PREVENT CLICK
 		event.preventDefault();
 
@@ -229,9 +232,7 @@ jQuery(document).ready(function($){
 
 		// SCROLL BACK TO PREVIOUS SECTION
 		$('html, body').scrollTop($('.projects-wrap .project.active').offset().top - headerHeight);
-
-		// CLEAN UP WINDOW LOCATION HASH
-		location.hash = '';
+		console.log($('.projects-wrap .project.active').offset().top - headerHeight);
 
 	});
 
