@@ -9,6 +9,7 @@ jQuery(document).ready(function($){
 
 	// MOBILE DETECTION FIRST
 	if(WURFL.is_mobile){$('body').addClass('mobile');}
+	if(WURFL.form_factor == 'Tablet'){$('body').addClass('tablet');}
 	
 	// HIDE/SHOW CONTENT DEN
 	if(location.origin.split('.')[0].split('//')[1] == 'den' || location.search.indexOf('dev=true') > -1){
