@@ -2343,8 +2343,8 @@ background: #222;
 overflow: auto;
 visibility: hidden;
 opacity: 0;
--webkit-transition: all .6s ease-out;
-transition: all .6s ease-out;
+-webkit-transition: all .3s ease-out;
+transition: all .3s ease-out;
 }
 .slide-active .slide{
 position: relative;
@@ -2840,10 +2840,10 @@ body.mobile .non-mobile{display:none !important;}
 	#resume-wrap .vpc{
 		padding-right: 0;
 	}
-	.slide-nav a{
+	.slide-nav .back{
 		color: #333;
 	}
-	.slide-nav a:hover{
+	.slide-nav .back:hover{
 		color: #000;
 	}
 }
