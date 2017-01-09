@@ -126,11 +126,20 @@ jQuery(document).ready(function($){
 		// ADD IMAGES LOADED CLASS
 		$('body').addClass('images-loaded');
 
+		// GET HASH
+		var hash = location.hash;
+
 		// CHECK FOR HASH
-		if(location.hash){
-			var $target = $('.projects-wrap').find('.project[data-project="' + location.hash.replace('#', '') + '"]');
-			$("html, body").animate({scrollTop: $target.position().top}, 500);
-			$target.find('.logo').trigger('click');
+		if(hash){
+			if(hash != '#resume'){
+				var $target = $('.projects-wrap').find('.project[data-project="' + location.hash.replace('#', '') + '"]');
+				$("html, body").animate({scrollTop: $target.position().top}, 600);
+				$target.find('.logo').trigger('click');
+			} else{
+				var $target = $('.resume-link').trigger('click');
+				$("html, body").animate({scrollTop: 0}, 600);
+				$target.trigger('click');
+			}
 		}
 	});
 
@@ -142,16 +151,16 @@ jQuery(document).ready(function($){
 		// SWITCH BASED ON DESTINATION
 		switch($(this).attr('data-scroll')){
 			case '#hire-me':
-				$("html, body").animate({scrollTop: $($(this).attr('data-scroll')).position().top}, 500);
+				$("html, body").animate({scrollTop: $($(this).attr('data-scroll')).position().top}, 600);
 			break;
 			case '#origins':
-				$("html, body").animate({scrollTop: $($(this).attr('data-scroll')).position().top + 80}, 500);
+				$("html, body").animate({scrollTop: $($(this).attr('data-scroll')).position().top + 80}, 600);
 			break;
 			case '#denver':
-				$("html, body").animate({scrollTop: ($($(this).attr('data-scroll')).position().top) - (headerHeight + parseInt($('#hire-me').css('padding-top')) + 20)}, 500);
+				$("html, body").animate({scrollTop: ($($(this).attr('data-scroll')).position().top) - (headerHeight + parseInt($('#hire-me').css('padding-top')) + 20)}, 600);
 			break;
 			default:
-				$("html, body").animate({scrollTop: ($($(this).attr('data-scroll')).position().top) - (headerHeight)}, 500);
+				$("html, body").animate({scrollTop: ($($(this).attr('data-scroll')).position().top) - (headerHeight)}, 600);
 			break;
 		}
 
@@ -224,14 +233,17 @@ jQuery(document).ready(function($){
 	// PROJECT BACK BUTTON
 	$(document).on('click', '#slide .back', function(event){
 
-		// CLEAN UP WINDOW LOCATION HASH
-		location.hash = '';
-
 		// PREVENT CLICK
 		event.preventDefault();
 
+		// CLEAN UP WINDOW LOCATION HASH
+		location.hash = '';
+
 		// REMOVE WORK SLIDE ACTIVE CLASS
 		$('body').removeClass('slide-active work-active resume-active');
+
+		// ACTIVATE HERO ANIMATIONS
+		$('#greet-hero').addClass('active');
 
 		// SCROLL BACK TO PREVIOUS SECTION
 		$('html, body').scrollTop($('.projects-wrap .project.active').offset().top - headerHeight);
@@ -284,6 +296,7 @@ jQuery(document).ready(function($){
 
 	// LOAD RESUME
 	$(document).on('click', '.resume-link', function(event){
+		
 		// PREVENT CLICK
 		event.preventDefault();
 
@@ -318,7 +331,7 @@ jQuery(document).ready(function($){
 		});
 
 		// ADD HASH
-		location.hash = $parent.attr('data-project');
+		location.hash = '#resume';
 
 	});
 
