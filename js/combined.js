@@ -155,8 +155,8 @@ jQuery(document).ready(function($){
 			break;
 		}
 
-		if($(this).hasClass('hire-me-trigger')){
-			$('#headshot-frame .toggle-frame').trigger('click');
+		if($(this).hasClass('hire-me-trigger') || $(this).attr('href') == '#hire-me'){
+			$('#hire-me .frame-wrap').addClass('swap');
 		}
 	});
 
@@ -210,17 +210,19 @@ jQuery(document).ready(function($){
 
 	// TOGGLE FRAME WRAP
 	$(document).on('click', '.toggle-frame', function(event){
-		$('.frame-wrap').toggleClass('swap');
+		$('#hire-me .frame-wrap').toggleClass('swap');
 	});
 
-	// SETUP WORK CONTENT STORAGE
+	// SETUP CONTENT STORAGE
 	var workContent = [];
+	var resumeContent = [];
 	$('#work .project').each(function(){
 		workContent.push('');
 	});
+	resumeContent.push('');
 
 	// PROJECT BACK BUTTON
-	$(document).on('click', '#work-slide .back', function(event){
+	$(document).on('click', '#slide .back', function(event){
 
 		// CLEAN UP WINDOW LOCATION HASH
 		location.hash = '';
@@ -229,7 +231,7 @@ jQuery(document).ready(function($){
 		event.preventDefault();
 
 		// REMOVE WORK SLIDE ACTIVE CLASS
-		$('body').removeClass('work-slide-active');
+		$('body').removeClass('slide-active work-active resume-active');
 
 		// SCROLL BACK TO PREVIOUS SECTION
 		$('html, body').scrollTop($('.projects-wrap .project.active').offset().top - headerHeight);
@@ -238,7 +240,7 @@ jQuery(document).ready(function($){
 	});
 
 	// PROJECT QUICK NAV NEXT
-	$(document).on('click', '.work-slide-nav .next a', function(event){
+	$(document).on('click', '.slide-nav .next a', function(event){
 
 		console.log('FIRE1!');
 
@@ -260,7 +262,7 @@ jQuery(document).ready(function($){
 	});
 
 	// PROJECT QUICK PREV NEXT
-	$(document).on('click', '.work-slide-nav .prev a', function(event){
+	$(document).on('click', '.slide-nav .prev a', function(event){
 
 		console.log('FIRE2!');
 
@@ -280,6 +282,46 @@ jQuery(document).ready(function($){
 
 	});
 
+	// LOAD RESUME
+	$(document).on('click', '.resume-link', function(event){
+		// PREVENT CLICK
+		event.preventDefault();
+
+		// SHOW LOADING ANIMATION FROM INSIDE WORK SLIDE
+		$body.addClass('load');
+
+		// SETUP VARS
+		var url = $(this).attr('href');
+		var $resumeSlide = $('#slide');
+		var $resumeSlideContent = $resumeSlide.find('.slide-content');
+
+		// CHECK FOR CONTENT IN STORAGE FIRST
+		if(!resumeContent[0].length){
+			// AJAX GET HTML
+			$.get(url, function(data){
+				$('body').addClass('slide-active resume-active');
+				setTimeout(function(){
+					$resumeSlideContent.html(data);
+				}, 800);
+				$('body, html').scrollTop(0);
+			});
+		} else{
+			// SEE IF CONTENT IS CACHED ALREADY
+			$parent.find('.work-content').html(resumeContent[index]);
+		}
+
+		// HIDE LOADING ANIMATION FROM INSIDE WORK SLIDE
+		$('#slide').imagesLoaded(function(){
+			setTimeout(function(){
+				$body.removeClass('load');
+			}, 1200);
+		});
+
+		// ADD HASH
+		location.hash = $parent.attr('data-project');
+
+	});
+
 	// PROJECT CLICKS
 	$(document).on('click', '.project .logo', function(event){
 
@@ -293,8 +335,8 @@ jQuery(document).ready(function($){
 		var url = $(this).attr('href');
 		var $parent = $(this).parents('.project');
 		var index = $parent.index();
-		var $workSlide = $('#work-slide');
-		var $workSlideContent = $workSlide.find('.work-slide-content');
+		var $workSlide = $('#slide');
+		var $workSlideContent = $workSlide.find('.slide-content');
 		rememberScroll = $parent.offset().top - headerHeight;
 
 		// REMOVE/ADD ACTIVE CLASSES
@@ -308,7 +350,7 @@ jQuery(document).ready(function($){
 				$parent.addClass('load');
 				// AJAX GET HTML
 				$.get(url, function(data){
-					$('body').addClass('work-slide-active');
+					$('body').addClass('slide-active work-active');
 					setTimeout(function(){
 						$workSlideContent.html(data);
 						$parent.removeClass('load');
@@ -324,8 +366,8 @@ jQuery(document).ready(function($){
 		}
 
 		// HIDE LOADING ANIMATION FROM INSIDE WORK SLIDE
-		if($body.hasClass('work-slide-active')){
-			$('#work-slide').imagesLoaded(function(){
+		if($body.hasClass('slide-active')){
+			$('#slide').imagesLoaded(function(){
 				setTimeout(function(){
 					$body.removeClass('load');
 				}, 1200);
