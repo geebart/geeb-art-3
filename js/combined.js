@@ -122,7 +122,9 @@ jQuery(document).ready(function($){
 
 	// LAZY LOAD IMAGES ON SCROLL ONCE THE WINDOW IS READY
 	$(window).load(function(){
-		if($('.lazy').isOnScreenWithOffset()
+		if($('.lazy').isOnScreenWithOffset()){
+			$(this).attr('src', $(this).attr('data-lazy-src')).removeClass('lazy');
+		}
 	});
 
 	// IMAGES LOADED
