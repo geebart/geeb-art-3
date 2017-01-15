@@ -118,9 +118,8 @@ jQuery(document).ready(function($){
 	// LAZY LOAD IMAGES ON SCROLL ONCE THE WINDOW IS READY
 	$(window).load(function(){
 		$(window).scroll(function(){
-			console.log('SCROLL!');
 			$('.lazy, .data-background-image').each(function(){
-				if($(this).parents('section').isOnScreenWithOffset()){
+				if($(this).parents('section').prev().isOnScreenWithOffset()){
 					if($(this).attr('data-lazy-src')){
 						// LAZY LOAD CLASS AND IMAGE
 						$(this).attr('src', $(this).attr('data-lazy-src')).removeClass('lazy');
@@ -205,10 +204,8 @@ jQuery(document).ready(function($){
 			form.find('input, select, textarea').each(function(){
 				// VALIDATE EMAIL
 				if($(this).attr('type') == 'email'){
-					console.log('FIRE 1');
 					var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   					if(!re.test($(this).val())){
-  						console.log('FIRE 2');
   						errorFound = true;
   						message = 'Enter a Valid Email Address';
   					}
@@ -295,8 +292,6 @@ jQuery(document).ready(function($){
 	// PROJECT QUICK NAV NEXT
 	$(document).on('click', '.slide-nav .next a', function(event){
 
-		console.log('FIRE1!');
-
 		// PREVENT CLICK
 		event.preventDefault();
 
@@ -308,7 +303,6 @@ jQuery(document).ready(function($){
 		if($nextProject.length){
 			$nextProject.find('.logo').trigger('click');
 		} else{
-			console.log('HERE!');
 			$thisProject.siblings('.project:first-child').find('.logo').trigger('click');
 		}
 
@@ -316,8 +310,6 @@ jQuery(document).ready(function($){
 
 	// PROJECT QUICK PREV NEXT
 	$(document).on('click', '.slide-nav .prev a', function(event){
-
-		console.log('FIRE2!');
 
 		// PREVENT CLICK
 		event.preventDefault();
