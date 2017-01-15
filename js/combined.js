@@ -263,7 +263,6 @@ jQuery(document).ready(function($){
 
 	// PROJECT BACK BUTTON
 	$(document).on('click', '#slide .back', function(event){
-
 		// PREVENT CLICK
 		event.preventDefault();
 
@@ -278,8 +277,6 @@ jQuery(document).ready(function($){
 
 		// SCROLL BACK TO PREVIOUS SECTION
 		$('html, body').scrollTop($('.projects-wrap .project.active').offset().top - headerHeight);
-		console.log($('.projects-wrap .project.active').offset().top - headerHeight);
-
 	});
 
 	// PROJECT QUICK NAV NEXT
@@ -339,27 +336,36 @@ jQuery(document).ready(function($){
 		var $resumeSlide = $('#slide');
 		var $resumeSlideContent = $resumeSlide.find('.slide-content');
 
-		// CHECK FOR CONTENT IN STORAGE FIRST
-		if(!resumeContent[0].length){
-			// AJAX GET HTML
-			$.get(url, function(data){
-				$('body').addClass('slide-active resume-active');
-				setTimeout(function(){
-					$resumeSlideContent.html(data);
-				}, 800);
-				$('body, html').scrollTop(0);
-			});
-		} else{
-			// SEE IF CONTENT IS CACHED ALREADY
-			$parent.find('.work-content').html(resumeContent[index]);
-		}
+		// START ANIMATION
+		$('body').addClass('slide-active resume-active');
 
-		// HIDE LOADING ANIMATION FROM INSIDE WORK SLIDE
-		$('#slide').imagesLoaded(function(){
-			setTimeout(function(){
-				$body.removeClass('load');
-			}, 1200);
-		});
+		// CHECK FOR CONTENT IN STORAGE FIRST // DELAY FOR ANIMATION
+		setTimeout(function(){
+			if(!resumeContent[0].length){
+				// AJAX GET HTML
+				$.get(url, function(data){
+					// SCROLL TO TOP
+					setTimeout(function(){
+						$('body, html').scrollTop(0);
+						$resumeSlideContent.html(data);
+						// HIDE LOADING ANIMATION FROM INSIDE WORK SLIDE
+						$('#slide').imagesLoaded(function(){
+							$body.removeClass('load');
+						});
+					});
+				});
+			} else{
+				// SCROLL TO TOP
+				$('body, html').scrollTop(0);
+				// SEE IF CONTENT IS CACHED ALREADY
+				$parent.find('.work-content').html(resumeContent[index]);
+				// HIDE LOADING ANIMATION FROM INSIDE WORK SLIDE
+				$('#slide').imagesLoaded(function(){
+					$body.removeClass('load');
+				});
+			}
+
+		}), 300;
 
 		// ADD HASH
 		location.hash = '#resume';
@@ -381,6 +387,8 @@ jQuery(document).ready(function($){
 		var index = $parent.index();
 		var $workSlide = $('#slide');
 		var $workSlideContent = $workSlide.find('.slide-content');
+		// CLEAN OUT OLD CONTENT
+		$workSlideContent.html('');
 		rememberScroll = $parent.offset().top - headerHeight;
 
 		// REMOVE/ADD ACTIVE CLASSES
@@ -397,7 +405,11 @@ jQuery(document).ready(function($){
 					$('body').addClass('slide-active work-active');
 					setTimeout(function(){
 						$workSlideContent.html(data);
-						$parent.removeClass('load');
+						// HIDE LOADING ANIMATION FROM INSIDE WORK SLIDE
+							$('#slide').imagesLoaded(function(){
+								$parent.removeClass('load');
+								$body.removeClass('load');
+							});
 					}, 800);
 					$('body, html').scrollTop(0);
 				});
@@ -407,15 +419,6 @@ jQuery(document).ready(function($){
 			}
 		} else{
 			// NOTHING YET
-		}
-
-		// HIDE LOADING ANIMATION FROM INSIDE WORK SLIDE
-		if($body.hasClass('slide-active')){
-			$('#slide').imagesLoaded(function(){
-				setTimeout(function(){
-					$body.removeClass('load');
-				}, 1200);
-			});
 		}
 
 		// ADD HASH
