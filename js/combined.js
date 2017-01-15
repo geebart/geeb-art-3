@@ -240,7 +240,7 @@ jQuery(document).ready(function($){
 		var $this = $(this);
 		if(!validate($this)){
 			$.ajax({
-				url: "http://formspree.io/" + "thegreatgeeber" + "@" + "gmail" + ".com",
+				url: "http://formspree.io/" + "geeb" + "@" + "geebart" + "." + "com",
 				method: "POST",
 				data: $this.serialize(),
 				dataType: "json",
