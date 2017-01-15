@@ -169,31 +169,62 @@ jQuery(document).ready(function($){
 		}
 	});
 
-	// FORM VALIDATION
+	// REMOVE ERROR CLASS FROM FIELDS
+	$(document).on('focus', 'input.error, select.error, textarea.error', function(){
+		$(this).removeClass('error');
+	});
+
+	// CONTACT FORM VALIDATION
 	function validate(form){
-		var errorFound = false;
-		form.find('input, select, textarea').each(function(){
-			if(($(this).is('input') && !$(this).val()) || ($(this).is('select') && !$(this).val())){
-				errorFound = true;
-				form.addClass('error');
-				$(this).addClass('error');
-				form.find('message').text('All fields are required');
+
+		// CLEAN FORM
+		form.removeClass('error').find('.error').removeClass('error');
+		form.addClass('load').addClass('done').removeClass('success');
+
+		// DELAY TEXT REMOVAL FOR ANIMATION
+		// setTimeout(function(){
+			form.find('.message').text('');
+
+			var errorFound = false;
+			var message = '';
+
+			// VALIDATE FIELDS
+			form.find('input, select, textarea').each(function(){
+				// VALIDATE EMAIL
+				if($(this).attr('type') == 'email'){
+					console.log('FIRE 1');
+					var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  					if(!re.test($(this).val())){
+  						console.log('FIRE 2');
+  						errorFound = true;
+  						message = 'Enter a Valid Email Address';
+  					}
+				}
+				// NO EMPTY FIELDS
+				if(!$(this).val()){
+					errorFound = true;
+					form.addClass('error');
+					$(this).addClass('error');
+					message = 'All Fields are Required';
+				}
+				// PAINT MESSAGE
+				form.find('.message').text(message);
+			});
+
+			// RETURN ERROR STATUS
+			if(errorFound == true){
+				return true;
+			} else{
+				return false;
 			}
-			if($(this).is('textarea') && !$(this).text().length){
-				errorFound = true;
-				form.addClass('error');
-				$(this).addClass('error');
-				form.find('message').text('All fields are required');
-			}
-		});
+
+		//}, 400);
 	}
 
 	// FORM SUBMISSION
 	$(document).on('submit', '#contact-form', function(event){
 		event.preventDefault();
 		var $this = $(this);
-		$this.removeClass('error').find('.error').removeClass('error');
-		$this.addClass('loading').addClass('done').removeClass('success').find('.message').text('');
 		if(!validate($this)){
 			$.ajax({
 				url: "http://formspree.io/" + "thegreatgeeber" + "@" + "gmail" + ".com",
@@ -202,7 +233,7 @@ jQuery(document).ready(function($){
 				dataType: "json",
 				success: function(){
 					setTimeout(function(){
-						$this.removeClass('loading').addClass('success').find('.message').text('Success!');
+						$this.removeClass('load').addClass('success').find('.message').text('Success!');
 					}, 800);
 					setTimeout(function(){
 						$this.removeClass('done');
@@ -210,7 +241,7 @@ jQuery(document).ready(function($){
 				},
 				error: function(){
 					setTimeout(function(){
-						$this.addClass('error').removeClass('loading').removeClass('success').removeClass('done').find('.message').text('An unknown error occurred. Try again.');
+						$this.addClass('error').removeClass('load').removeClass('success').removeClass('done').find('.message').text('An unknown error occurred. Try again.');
 					}, 800);
 				}
 			});
