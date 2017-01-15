@@ -122,9 +122,15 @@ jQuery(document).ready(function($){
 
 	// LAZY LOAD IMAGES ON SCROLL ONCE THE WINDOW IS READY
 	$(window).load(function(){
-		if($('.lazy').isOnScreenWithOffset()){
-			$(this).attr('src', $(this).attr('data-lazy-src')).removeClass('lazy');
-		}
+		$(window).scroll(function(){
+			console.log('SCROLL!');
+			$('.lazy').each(function(){
+				if($(this).parents('section').isOnScreenWithOffset()){
+					console.log('LAZY FOUND!');
+					$(this).attr('src', $(this).attr('data-lazy-src')).removeClass('lazy');
+				}
+			});
+		});
 	});
 
 	// IMAGES LOADED
