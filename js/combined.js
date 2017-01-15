@@ -115,16 +115,22 @@ jQuery(document).ready(function($){
 		}
 	});
 
-	// OTHER BACKGROUND IMAGES
-	$('.data-background-image').each(function(){
-		$(this).attr('style', 'background-image: url(images/' + $(this).attr("data-background-image") + ')');
-	});
-
 	// LAZY LOAD IMAGES ON SCROLL ONCE THE WINDOW IS READY
 	$(window).load(function(){
-		if($('.lazy').isOnScreenWithOffset()){
-			$(this).attr('src', $(this).attr('data-lazy-src')).removeClass('lazy');
-		}
+		$(window).scroll(function(){
+			console.log('SCROLL!');
+			$('.lazy, .data-background-image').each(function(){
+				if($(this).parents('section').isOnScreenWithOffset()){
+					if($(this).attr('data-lazy-src')){
+						// LAZY LOAD CLASS AND IMAGE
+						$(this).attr('src', $(this).attr('data-lazy-src')).removeClass('lazy');
+					} else{
+						// OTHER BACKGROUND IMAGES
+						$(this).attr('style', 'background-image: url(images/' + $(this).attr("data-background-image") + ')');
+					}
+				}
+			});
+		});
 	});
 
 	// IMAGES LOADED
