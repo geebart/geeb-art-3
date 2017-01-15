@@ -120,6 +120,11 @@ jQuery(document).ready(function($){
 		$(this).attr('style', 'background-image: url(images/' + $(this).attr("data-background-image") + ')');
 	});
 
+	// LAZY LOAD IMAGES ON SCROLL ONCE THE WINDOW IS READY
+	$(window).load(function(){
+		if($('.lazy').isOnScreenWithOffset()
+	});
+
 	// IMAGES LOADED
 	$body.imagesLoaded(function(){
 
@@ -406,10 +411,10 @@ jQuery(document).ready(function($){
 					setTimeout(function(){
 						$workSlideContent.html(data);
 						// HIDE LOADING ANIMATION FROM INSIDE WORK SLIDE
-							$('#slide').imagesLoaded(function(){
-								$parent.removeClass('load');
-								$body.removeClass('load');
-							});
+						$('#slide').imagesLoaded(function(){
+							$parent.removeClass('load');
+							$body.removeClass('load');
+						});
 					}, 800);
 					$('body, html').scrollTop(0);
 				});
