@@ -117,8 +117,11 @@ jQuery(document).ready(function($){
 
 	// LAZY LOAD IMAGES ON SCROLL ONCE THE WINDOW IS READY
 	$(window).load(function(){
+		// LAZY LOAD ON SCROLL
 		$(window).scroll(function(){
+			// SELECT ALL LAZY IMAGES AND BACKGROUNDS ON PAGE
 			$('.lazy, .data-background-image').each(function(){
+				// IF PREVIOUS SECTION IS IN SCREEN, LOAD IMAGES IN THIS (THE NEXT) SECTION
 				if($(this).parents('section').prev().isOnScreenWithOffset()){
 					if($(this).attr('data-lazy-src')){
 						// LAZY LOAD CLASS AND IMAGE
@@ -129,6 +132,10 @@ jQuery(document).ready(function($){
 					}
 				}
 			});
+		});
+		// LOAD JS INJECT EASTER EGG
+		$.get('easter-egg.html', function(data){
+			$body.append(data);
 		});
 	});
 
@@ -157,11 +164,13 @@ jQuery(document).ready(function($){
 
 	// ANIMATE SCROLL
 	$(document).on('click', '.scroll', function(e){
+
 		// PREVENT CLICK
 		e.preventDefault();
 		
 		// SWITCH BASED ON DESTINATION
 		switch($(this).attr('data-scroll')){
+			// SPECIAL CASES FOR SCROLLS TO COMPENSATE FOR STICKY OR NO STICKY
 			case '#hire-me':
 				$("html, body").animate({scrollTop: $($(this).attr('data-scroll')).position().top}, 600);
 			break;
@@ -175,10 +184,11 @@ jQuery(document).ready(function($){
 				$("html, body").animate({scrollTop: ($($(this).attr('data-scroll')).position().top) - (headerHeight)}, 600);
 			break;
 		}
-
+		// TRIGGER HIRE ME FORM
 		if($(this).hasClass('hire-me-trigger') || $(this).attr('href') == '#hire-me'){
 			$('#hire-me .frame-wrap').addClass('swap');
 		}
+
 	});
 
 	// REMOVE ERROR CLASS FROM FIELDS
