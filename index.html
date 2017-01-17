@@ -1,18 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>The Portfolio of Chris "Geeb" Smith | Geebart Denver</title>
+	<title>The Portfolio of Chris "Geeb" Smith | GeebArt Denver</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans|Ubuntu:700" rel="stylesheet">
 	<link href="css/style.css" rel="stylesheet">
+	<meta property="og:title" content="The Portfolio of Chris 'Geeb' Smith" />
+	<meta property="og:type" content="website" />
+	<meta property="og:description" content="A developer tunred Project Director, Chris 'Geeb' Smith is on an epic quest to find work in Denver, Colorado. Hire me." />
+	<meta property="og:url" content="http://den.geebart.com" />
+	<meta property="og:image" content="images/denver-bg.jpg" />
 </head>
 <body class="load">
 	<header>
 		<nav class="wrap">
 			<ul>
+				<li class="ga-logo-wrap">
+					<a class="ga-logo" href="" title="Goto Homepage | GeebArt Logo">GA</a>
+				</li>
 				<li class="title-card">
-					<a href="#" title="">Chris <span>&ldquo;Geeb&rdquo; </span>Smith</a>
-					<small>Product Director</small>
+					<a href="" title="">Chris <span>&ldquo;Geeb&rdquo; </span>Smith</a>
+					<small>Creative Technology Director</small>
 				</li>
 				<li class="right">
 					<a href="#hire-me" class="button ghost dark scroll" data-scroll="#hire-me" title="Contact Me">Hire<span> Me</span></a>
@@ -24,7 +32,7 @@
 		</nav>
 	</header>
 	<main>
-		<section id="greet-hero" class="parallax" data-background-image="images/denver-bg.jpg">
+		<section id="greet-hero">
 			<div id="player"></div>
 			<div class="table">
 				<div>
@@ -32,7 +40,7 @@
 						<div class="wrap">
 							<div class="row">
 								<h1>Chris<span class="non-mobile"> </span><br class="mobile">&ldquo;Geeb&rdquo;<span class="non-mobile"> </span><br class="mobile">Smith</h1>
-								<h2>A <strong>Product Director</strong> on an epic quest <br class="non-mobile">to find work in <strong>Denver, Colorado</strong></h2>
+								<h2>A <strong>Creative Technology Director</strong> on an epic quest <br class="non-mobile">to find work in <strong>Denver, Colorado</strong></h2>
 								<div class="center bottom">
 									<a class="button large scroll" data-scroll="#hire-me" href="#" title="Scroll down the page to the next section">Start the Journey</a>
 								</div>
@@ -57,7 +65,7 @@
 						<div class="content">
 							<div class="wrap">
 								<div class="row">
-									<div class="frame-wrap swap">
+									<div class="frame-wrap">
 										<div id="headshot-frame" class="frame">
 											<div class="vpc">
 												<!-- <span class="geeb-arrow">Geeb<span class="icon">&#xe969;</span></span> -->
@@ -66,7 +74,7 @@
 													<div class="personalities">
 													<span class="intro non-mobile">I'm a:</span>
 													<ul class="slider">
-														<li class="active">Product Director</li>
+														<li class="active">Technology Director</li>
 														<li>Ping Pong Sensei</li>
 														<li>Technology Director</li>
 														<li>Game of Thrones Fanboy</li>
@@ -81,19 +89,18 @@
 													</ul>
 												</div>
 												</h3>
-												<hr class="mobile">
 												<h6>Why Denver?</h6>
 												<p>I am destined to move West. From the squeaky clean streets to the mountain scapes, Denver is a beautiful utopia. This is the place where my creative spark will shine brightest. </p>
 												<h6>What do I bring to the table?</h6>
-												<p>I am a Developer turned <strong>Product Director</strong> with a knack for problem solving and collaboration. I've managed teams of 20 or more, worked with offshore teams and 3rd party vendors, built million-dollar platforms for fortune 500 companies and I infuse all of this with a <strong>creative approach</strong>.</p>
+												<p>I am a Developer turned <strong>Creative Technology Director</strong> with a knack for problem solving and collaboration. I've managed teams of 20 or more, worked with offshore teams and 3rd party vendors, built million-dollar platforms for fortune 500 companies and I infuse all of this with a <strong>creative approach</strong>.</p>
 												<!-- <a class="button dark scroll" title="Scroll to the next section" data-scroll="#origins"><span class="icon">&#xea36;</span> Learn More</a> -->
-												<a class="button toggle-frame" title=""><span class="icon">&#xe945;</span> Get in Touch</a>
+												<a class="button toggle-frame" title=""><span class="icon">&#xe945;</span> Let's Talk</a>
 											</div>
 											<div id="map"></div>
 										</div>
 										<div id="form-frame" class="frame">
 											<div class="vpc vpw-1">
-												<h3>Let's Talk</h3>
+												<h3>Contact Geeb</h3>
 												<form id="contact-form" method="POST">
 													<label for="Name">Your Name</label>
 													<input type="text" name="Name" placeholder="John Smith">
@@ -102,8 +109,8 @@
 													<label for="Message">Your Message</label>
 													<textarea name="Message" placeholder="Got the Geeber fever? Tell me why."></textarea>
 													<div class="loading-wrap">
-														<a class="button dark toggle-frame" title="back to previous"><span>&#8617;</span> Back</a>
-														<input class="button" type="submit" value="Send">
+														<a class="button toggle-frame" title="back to previous"><span>&#8617;</span> Back</a>
+														<input class="button dark" type="submit" value="Send">
 														<span class="progress"></span>
 													</div>
 													<div class="message-wrap">
@@ -130,7 +137,7 @@
 					<h4>How'd you get that nickname?</h4>
 					<div class="vpc vpw-40">
 						<figure>
-							<img width="241" height="300" src="images/geeber-241x300.jpg" alt="Geeber! &mdash; "/>
+							<img class="lazy" width="241" height="300" data-lazy-src="images/geeber-241x300.jpg" alt="Geeber! &mdash; "/>
 							<div class="shadow"></div>
 							<figcaption>Geeber! (2011) &mdash; Identity Reconnected</figcaption>
 						</figure>
@@ -393,10 +400,10 @@
 							</div>
 						</div>
 						<div class="background">
-							<img src="images/work-club-bg.jpg"/>
+							<img class="lazy" data-lazy-src="images/work-club-bg.jpg"/>
 						</div>
 						<a class="logo" href="work/craftsman-club.html" target="_blank" title="View the Craftsman Club Website">
-							<img src="images/work-club-logo.png"/>
+							<img class="lazy" data-lazy-src="images/work-club-logo.png"/>
 						</a>
 					</div>
 					<div class="work-content"></div>
@@ -415,10 +422,10 @@
 							</div>
 						</div>
 						<div class="background">
-							<img src="images/work-diehard-bg.jpg"/>
+							<img class="lazy" data-lazy-src="images/work-diehard-bg.jpg"/>
 						</div>
 						<a class="logo" href="work/diehard.html" target="_blank" title="See All Diehard Projects">
-							<img src="images/work-diehard-logo.png"/>
+							<img class="lazy" data-lazy-src="images/work-diehard-logo.png"/>
 						</a>
 					</div>
 					<div class="work-content"></div>
@@ -437,10 +444,10 @@
 							</div>
 						</div>
 						<div class="background">
-							<img src="images/work-craftsman-bg.jpg"/>
+							<img class="lazy" data-lazy-src="images/work-craftsman-bg.jpg"/>
 						</div>
 						<a class="logo" href="work/craftsman.html" target="_blank" title="View the Craftsman.com Brand Website">
-							<img src="images/work-craftsman-logo.png"/>
+							<img class="lazy" data-lazy-src="images/work-craftsman-logo.png"/>
 						</a>
 					</div>
 					<div class="work-content"></div>
@@ -459,10 +466,10 @@
 							</div>
 						</div>
 						<div class="background">
-							<img src="images/work-wildchild-bg.jpg"/>
+							<img class="lazy" data-lazy-src="images/work-wildchild-bg.jpg"/>
 						</div>
 						<a class="logo" href="work/wild-child.html" target="_blank" title="View the Wild Child  Website">
-							<img src="images/work-wild-child-logo.png"/>
+							<img class="lazy" data-lazy-src="images/work-wild-child-logo.png"/>
 						</a>
 					</div>
 					<div class="work-content"></div>
@@ -481,10 +488,10 @@
 							</div>
 						</div>
 						<div class="background">
-							<img src="images/work-amana-bg.jpg"/>
+							<img class="lazy" data-lazy-src="images/work-amana-bg.jpg"/>
 						</div>
 						<a class="logo" href="work/amana.html" target="_blank" title="View the Amana Brand Website">
-							<img src="images/work-amana-logo.png"/>
+							<img class="lazy" data-lazy-src="images/work-amana-logo.png"/>
 						</a>
 					</div>
 					<div class="work-content"></div>
@@ -503,10 +510,10 @@
 							</div>
 						</div>
 						<div class="background">
-							<img src="images/work-reframe-bg.jpg"/>
+							<img class="lazy" data-lazy-src="images/work-reframe-bg.jpg"/>
 						</div>
 						<a class="logo" href="work/reframe.html" target="_blank" title="View the Reframe Website">
-							<img src="images/work-reframe-logo.png"/>
+							<img class="lazy" data-lazy-src="images/work-reframe-logo.png"/>
 						</a>
 					</div>
 					<div class="work-content"></div>
@@ -525,10 +532,10 @@
 							</div>
 						</div>
 						<div class="background">
-							<img src="images/work-kenmore-bg.jpg"/>
+							<img class="lazy" data-lazy-src="images/work-kenmore-bg.jpg"/>
 						</div>
 						<a class="logo" href="work/kenmore.html" target="_blank" title="View the Kenmore.com Brand Website">
-							<img src="images/work-kenmore-logo.png"/>
+							<img class="lazy" data-lazy-src="images/work-kenmore-logo.png"/>
 						</a>
 					</div>
 					<div class="work-content"></div>
@@ -547,10 +554,10 @@
 							</div>
 						</div>
 						<div class="background">
-							<img src="images/work-cookmore-bg.jpg"/>
+							<img class="lazy" data-lazy-src="images/work-cookmore-bg.jpg"/>
 						</div>
 						<a class="logo" href="work/cookmore.html" target="_blank" title="View the Cookmore.com Website">
-							<img src="images/work-cookmore-logo.png"/>
+							<img class="lazy" data-lazy-src="images/work-cookmore-logo.png"/>
 						</a>
 					</div>
 					<div class="work-content"></div>
@@ -569,10 +576,10 @@
 							</div>
 						</div>
 						<div class="background">
-							<img src="images/work-diehard-from-the-start-bg.jpg"/>
+							<img class="lazy" data-lazy-src="images/work-diehard-from-the-start-bg.jpg"/>
 						</div>
 						<a class="logo" href="work/diehard-fans.html" target="_blank" title="View the Diehard from the Start Contest Website">
-							<img src="images/work-diehard-logo.png"/>
+							<img class="lazy" data-lazy-src="images/work-diehard-logo.png"/>
 						</a>
 					</div>
 					<div class="work-content"></div>
@@ -591,10 +598,10 @@
 							</div>
 						</div>
 						<div class="background">
-							<img src="images/work-ggw-blog-bg.jpg"/>
+							<img class="lazy" data-lazy-src="images/work-ggw-blog-bg.jpg"/>
 						</div>
 						<a class="logo" href="work/ggw.html" target="_blank" title="View the Gladiator GarageWorks Blog Website">
-							<img src="images/work-ggw-logo.png"/>
+							<img class="lazy" data-lazy-src="images/work-ggw-logo.png"/>
 						</a>
 					</div>
 					<div class="work-content"></div>
@@ -613,10 +620,10 @@
 							</div>
 						</div>
 						<div class="background">
-							<img src="images/work-ars-bg.jpg"/>
+							<img class="lazy" data-lazy-src="images/work-ars-bg.jpg"/>
 						</div>
 						<a class="logo" href="work/aislerocket.html" target="_blank" title="View the Diehard from the Start Contest Website">
-							<img src="images/work-ars-logo.png"/>
+							<img class="lazy" data-lazy-src="images/work-ars-logo.png"/>
 						</a>
 					</div>
 					<div class="work-content"></div>
@@ -635,10 +642,10 @@
 							</div>
 						</div>
 						<div class="background">
-							<img src="images/work-halyard-bg.jpg"/>
+							<img class="lazy" data-lazy-src="images/work-halyard-bg.jpg"/>
 						</div>
 						<a class="logo" href="work/hyh.html" target="_blank" title="View the Halyard Website">
-							<img src="images/work-halyard-logo.png"/>
+							<img class="lazy" data-lazy-src="images/work-halyard-logo.png"/>
 						</a>
 					</div>
 					<div class="work-content"></div>
@@ -657,10 +664,10 @@
 							</div>
 						</div>
 						<div class="background">
-							<img src="images/work-ninjatown-bg.jpg"/>
+							<img class="lazy" data-lazy-src="images/work-ninjatown-bg.jpg"/>
 						</div>
 						<a class="logo" href="work/ninjatown.html" target="_blank" title="View the Ninjatown Website">
-							<img src="images/work-ninjatown-logo.png"/>
+							<img class="lazy" data-lazy-src="images/work-ninjatown-logo.png"/>
 						</a>
 					</div>
 					<div class="work-content"></div>
@@ -679,10 +686,10 @@
 							</div>
 						</div>
 						<div class="background">
-							<img src="images/work-maytag-bg.jpg"/>
+							<img class="lazy" data-lazy-src="images/work-maytag-bg.jpg"/>
 						</div>
 						<a class="logo" href="work/maytag.html" target="_blank" title="View the Maytag Brand Website">
-							<img src="images/work-maytag-logo.png"/>
+							<img class="lazy" data-lazy-src="images/work-maytag-logo.png"/>
 						</a>
 					</div>
 					<div class="work-content"></div>
@@ -701,10 +708,10 @@
 							</div>
 						</div>
 						<div class="background">
-							<img src="images/work-whirlpool-bg.jpg"/>
+							<img class="lazy" data-lazy-src="images/work-whirlpool-bg.jpg"/>
 						</div>
 						<a class="logo" href="work/whirlpool.html" target="_blank" title="View the Whirlpool Brand Website">
-							<img src="images/work-whirlpool-logo.png"/>
+							<img class="lazy" data-lazy-src="images/work-whirlpool-logo.png"/>
 						</a>
 					</div>
 					<div class="work-content"></div>
@@ -723,10 +730,10 @@
 							</div>
 						</div>
 						<div class="background">
-							<img src="images/work-syw-bg.jpg"/>
+							<img class="lazy" data-lazy-src="images/work-syw-bg.jpg"/>
 						</div>
 						<a class="logo" href="work/shopyourway.html" target="_blank" title="View the Shop Your Way Website">
-							<img src="images/work-syw-logo.png"/>
+							<img class="lazy" data-lazy-src="images/work-syw-logo.png"/>
 						</a>
 					</div>
 					<div class="work-content"></div>
@@ -792,11 +799,61 @@
 				</div>
 			</div>
 		</section>
+		<section id="instagram">
+			<div class="wrap">
+				<div class="row">
+					<h3>Life Outside the Computer</h3>
+					<!-- <h3></h3> -->
+				</div>
+			</div>
+			<div class="row">
+				<div class="vpw-4">
+					<a href="https://www.instagram.com/p/BPFRqathyNh/?taken-by=instageeber" title="View photo on Instagram" target="_blank">
+						<img class="lazy" data-lazy-src="images/geeb-instagram-01.jpg" alt="Puppy Bernie in Bed" />
+					</a>
+				</div>
+				<div class="vpw-4">
+					<a href="https://www.instagram.com/p/BNVax_yjpcJ/?taken-by=instageeber" title="View photo on Instagram" target="_blank">
+						<img class="lazy" data-lazy-src="images/geeb-instagram-02.jpg" alt="Chris and Leah at Chicago Kris Kindle Market 2016" />
+					</a>
+				</div>
+				<div class="vpw-4">
+					<a href="https://www.instagram.com/p/BLCdKGujAeX/?taken-by=instageeber" title="View photo on Instagram" target="_blank">
+						<img class="lazy" data-lazy-src="images/geeb-instagram-03.jpg" alt="Leah's Portfolio Site Photoshoot" />
+					</a>
+				</div>
+				<div class="vpw-4">
+					<a href="https://www.instagram.com/p/BKhL6nUDP2f/?taken-by=instageeber" title="View photo on Instagram" target="_blank">
+						<img class="lazy" data-lazy-src="images/geeb-instagram-04.jpg" alt="Back Row at Red Rocks Amphitheater" />
+					</a>
+				</div>
+				<div class="vpw-4">
+					<a href="https://www.instagram.com/p/BKeppYADT2g/?taken-by=instageeber" title="View photo on Instagram" target="_blank">
+						<img class="lazy" data-lazy-src="images/geeb-instagram-05.jpg" alt="Drew Taking a Break During the Hike" />
+					</a>
+				</div>
+				<div class="vpw-4">
+					<a href="https://www.instagram.com/p/BKYyQW9DQhv/?taken-by=instageeber" title="View photo on Instagram" target="_blank">
+						<img class="lazy" data-lazy-src="images/geeb-instagram-06.jpg" alt="Denver Civic Eats" />
+					</a>
+				</div>
+				<div class="vpw-4">
+					<a href="https://www.instagram.com/p/BKeoT__j2Wp/?taken-by=instageeber" title="View photo on Instagram" target="_blank">
+						<img class="lazy" data-lazy-src="images/geeb-instagram-07.jpg" alt="Hiking up Mt. Evans in Denver" />
+					</a>
+				</div>
+				<div class="vpw-4">
+					<a href="https://www.instagram.com/p/BHsfeiqDmzm/?taken-by=instageeber" title="View photo on Instagram" target="_blank">
+						<img class="lazy" data-lazy-src="images/geeb-instagram-08.jpg" alt="Leah's Mom in Mask on Birthday" />
+					</a>
+				</div>
+			</div>
+		</section>
 		<section id="denver">
 			<div class="wrap">
 				<div class="row">
-					<h3>A Bright Future in Denver</h3>
-					<h4>A CSS Drawing Dedicated to the Mile High City</h4>
+					<!-- <h3>A Bright Future in Denver</h3>
+					<h4>A CSS Drawing Dedicated to the Mile High City</h4> -->
 					<div id="building-scene">
 						<div class="building">
 							<div class="window"></div>
@@ -923,32 +980,6 @@
 				</div>
 			</div>
 		</section>
-		<!-- <section id="gallery">
-			<div class="wrap">
-				<div class="row">
-					<h3>Latest Trip to Denver</h3>
-					<h4>September 14, 2016</h4>
-				</div>
-			</div>
-			<div id="slider-wrap">
-				<div class="wrap">
-					<div class="row">
-						<ul class="slider" data-slick="{'slidesToShow': 1, 'slidesToScroll': 1}">
-							<li><img src="images/slide-01.jpg" alt=""/></li>
-							<li><img src="images/slide-02.jpg" alt=""/></li>
-							<li><img src="images/slide-03.jpg" alt=""/></li>
-							<li><img src="images/slide-04.jpg" alt=""/></li>
-							<li><img src="images/slide-05.jpg" alt=""/></li>
-							<li><img src="images/slide-06.jpg" alt=""/></li>
-							<li><img src="images/slide-07.jpg" alt=""/></li>
-							<li><img src="images/slide-08.jpg" alt=""/></li>
-							<li><img src="images/slide-09.jpg" alt=""/></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<div id="instafeed"></div>
-		</section> -->
 	</main>
 	<div id="slide" class="slide">
 		<div class="slide-nav">
@@ -1036,6 +1067,15 @@
 		    draggable: false
 		});
 	}
+	</script>
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-90405768-1', 'auto');
+		ga('send', 'pageview');
 	</script>
 </body>
 </html>

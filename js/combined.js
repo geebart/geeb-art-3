@@ -115,9 +115,28 @@ jQuery(document).ready(function($){
 		}
 	});
 
-	// OTHER BACKGROUND IMAGES
-	$('.data-background-image').each(function(){
-		$(this).attr('style', 'background-image: url(images/' + $(this).attr("data-background-image") + ')');
+	// LAZY LOAD IMAGES ON SCROLL ONCE THE WINDOW IS READY
+	$(window).load(function(){
+		// LAZY LOAD ON SCROLL
+		$(window).scroll(function(){
+			// SELECT ALL LAZY IMAGES AND BACKGROUNDS ON PAGE
+			$('.lazy, .data-background-image').each(function(){
+				// IF PREVIOUS SECTION IS IN SCREEN, LOAD IMAGES IN THIS (THE NEXT) SECTION
+				if($(this).parents('section').prev().isOnScreenWithOffset()){
+					if($(this).attr('data-lazy-src')){
+						// LAZY LOAD CLASS AND IMAGE
+						$(this).attr('src', $(this).attr('data-lazy-src')).removeClass('lazy');
+					} else{
+						// OTHER BACKGROUND IMAGES
+						$(this).attr('style', 'background-image: url(images/' + $(this).attr("data-background-image") + ')');
+					}
+				}
+			});
+		});
+		// LOAD JS INJECT EASTER EGG
+		$.get('easter-egg.html', function(data){
+			$body.append(data);
+		});
 	});
 
 	// IMAGES LOADED
@@ -145,11 +164,13 @@ jQuery(document).ready(function($){
 
 	// ANIMATE SCROLL
 	$(document).on('click', '.scroll', function(e){
+
 		// PREVENT CLICK
 		e.preventDefault();
 		
 		// SWITCH BASED ON DESTINATION
 		switch($(this).attr('data-scroll')){
+			// SPECIAL CASES FOR SCROLLS TO COMPENSATE FOR STICKY OR NO STICKY
 			case '#hire-me':
 				$("html, body").animate({scrollTop: $($(this).attr('data-scroll')).position().top}, 600);
 			break;
@@ -163,10 +184,11 @@ jQuery(document).ready(function($){
 				$("html, body").animate({scrollTop: ($($(this).attr('data-scroll')).position().top) - (headerHeight)}, 600);
 			break;
 		}
-
+		// TRIGGER HIRE ME FORM
 		if($(this).hasClass('hire-me-trigger') || $(this).attr('href') == '#hire-me'){
 			$('#hire-me .frame-wrap').addClass('swap');
 		}
+
 	});
 
 	// REMOVE ERROR CLASS FROM FIELDS
@@ -192,10 +214,8 @@ jQuery(document).ready(function($){
 			form.find('input, select, textarea').each(function(){
 				// VALIDATE EMAIL
 				if($(this).attr('type') == 'email'){
-					console.log('FIRE 1');
 					var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   					if(!re.test($(this).val())){
-  						console.log('FIRE 2');
   						errorFound = true;
   						message = 'Enter a Valid Email Address';
   					}
@@ -227,7 +247,7 @@ jQuery(document).ready(function($){
 		var $this = $(this);
 		if(!validate($this)){
 			$.ajax({
-				url: "http://formspree.io/" + "thegreatgeeber" + "@" + "gmail" + ".com",
+				url: "http://formspree.io/" + "geeb" + "@" + "geebart" + "." + "com",
 				method: "POST",
 				data: $this.serialize(),
 				dataType: "json",
@@ -263,7 +283,6 @@ jQuery(document).ready(function($){
 
 	// PROJECT BACK BUTTON
 	$(document).on('click', '#slide .back', function(event){
-
 		// PREVENT CLICK
 		event.preventDefault();
 
@@ -278,14 +297,10 @@ jQuery(document).ready(function($){
 
 		// SCROLL BACK TO PREVIOUS SECTION
 		$('html, body').scrollTop($('.projects-wrap .project.active').offset().top - headerHeight);
-		console.log($('.projects-wrap .project.active').offset().top - headerHeight);
-
 	});
 
 	// PROJECT QUICK NAV NEXT
 	$(document).on('click', '.slide-nav .next a', function(event){
-
-		console.log('FIRE1!');
 
 		// PREVENT CLICK
 		event.preventDefault();
@@ -298,7 +313,6 @@ jQuery(document).ready(function($){
 		if($nextProject.length){
 			$nextProject.find('.logo').trigger('click');
 		} else{
-			console.log('HERE!');
 			$thisProject.siblings('.project:first-child').find('.logo').trigger('click');
 		}
 
@@ -306,8 +320,6 @@ jQuery(document).ready(function($){
 
 	// PROJECT QUICK PREV NEXT
 	$(document).on('click', '.slide-nav .prev a', function(event){
-
-		console.log('FIRE2!');
 
 		// PREVENT CLICK
 		event.preventDefault();
@@ -339,27 +351,36 @@ jQuery(document).ready(function($){
 		var $resumeSlide = $('#slide');
 		var $resumeSlideContent = $resumeSlide.find('.slide-content');
 
-		// CHECK FOR CONTENT IN STORAGE FIRST
-		if(!resumeContent[0].length){
-			// AJAX GET HTML
-			$.get(url, function(data){
-				$('body').addClass('slide-active resume-active');
-				setTimeout(function(){
-					$resumeSlideContent.html(data);
-				}, 800);
-				$('body, html').scrollTop(0);
-			});
-		} else{
-			// SEE IF CONTENT IS CACHED ALREADY
-			$parent.find('.work-content').html(resumeContent[index]);
-		}
+		// START ANIMATION
+		$('body').addClass('slide-active resume-active');
 
-		// HIDE LOADING ANIMATION FROM INSIDE WORK SLIDE
-		$('#slide').imagesLoaded(function(){
-			setTimeout(function(){
-				$body.removeClass('load');
-			}, 1200);
-		});
+		// CHECK FOR CONTENT IN STORAGE FIRST // DELAY FOR ANIMATION
+		setTimeout(function(){
+			if(!resumeContent[0].length){
+				// AJAX GET HTML
+				$.get(url, function(data){
+					// SCROLL TO TOP
+					setTimeout(function(){
+						$('body, html').scrollTop(0);
+						$resumeSlideContent.html(data);
+						// HIDE LOADING ANIMATION FROM INSIDE WORK SLIDE
+						$('#slide').imagesLoaded(function(){
+							$body.removeClass('load');
+						});
+					});
+				});
+			} else{
+				// SCROLL TO TOP
+				$('body, html').scrollTop(0);
+				// SEE IF CONTENT IS CACHED ALREADY
+				$parent.find('.work-content').html(resumeContent[index]);
+				// HIDE LOADING ANIMATION FROM INSIDE WORK SLIDE
+				$('#slide').imagesLoaded(function(){
+					$body.removeClass('load');
+				});
+			}
+
+		}), 300;
 
 		// ADD HASH
 		location.hash = '#resume';
@@ -381,6 +402,8 @@ jQuery(document).ready(function($){
 		var index = $parent.index();
 		var $workSlide = $('#slide');
 		var $workSlideContent = $workSlide.find('.slide-content');
+		// CLEAN OUT OLD CONTENT
+		$workSlideContent.html('');
 		rememberScroll = $parent.offset().top - headerHeight;
 
 		// REMOVE/ADD ACTIVE CLASSES
@@ -397,7 +420,11 @@ jQuery(document).ready(function($){
 					$('body').addClass('slide-active work-active');
 					setTimeout(function(){
 						$workSlideContent.html(data);
-						$parent.removeClass('load');
+						// HIDE LOADING ANIMATION FROM INSIDE WORK SLIDE
+						$('#slide').imagesLoaded(function(){
+							$parent.removeClass('load');
+							$body.removeClass('load');
+						});
 					}, 800);
 					$('body, html').scrollTop(0);
 				});
@@ -407,15 +434,6 @@ jQuery(document).ready(function($){
 			}
 		} else{
 			// NOTHING YET
-		}
-
-		// HIDE LOADING ANIMATION FROM INSIDE WORK SLIDE
-		if($body.hasClass('slide-active')){
-			$('#slide').imagesLoaded(function(){
-				setTimeout(function(){
-					$body.removeClass('load');
-				}, 1200);
-			});
 		}
 
 		// ADD HASH
