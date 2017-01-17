@@ -2583,7 +2583,7 @@ body.load{
 	height: 100vh;
 	overflow: hidden;
 }
-.load .loading{
+body.load #loading-screen, .project.load .loading{
 	visibility: visible;
 	opacity: 1;	
 }
