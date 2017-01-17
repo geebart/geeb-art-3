@@ -318,6 +318,24 @@ text-align: center;
 	display: inline-block;
 	float:none;
 }
+.ga-logo-wrap{
+	vertical-align: middle;
+}
+.ga-logo-wrap .ga-logo{
+font-family: 'Ubuntu', sans-serif;
+font-weight: bold;
+font-size: 2.2rem;
+letter-spacing: -.1rem;
+border: .2rem solid;
+width: 5rem;
+height: 5rem;
+line-height: 4.8rem;
+text-align: center;
+float: left;
+margin: 0 1rem 0 0;
+padding: 0;
+border-radius: 2px;
+}
 
 /* HEADER */
 header{
@@ -381,6 +399,8 @@ text-align: left;
 color: #444;
 font-weight: normal;
 font-size: 80%;
+width: auto;
+clear: both;
 }
 .social{
 float:left;
@@ -2624,6 +2644,22 @@ margin-bottom: 1rem;
 .resume-header{
 margin-bottom: 4rem;
 }
+.resume-header li{
+	width: auto;
+}
+.address{
+	float: right;
+}
+#resume .address ul{
+	margin: 0;
+	padding: 0;
+}
+#resume .address li{
+clear: both;
+text-align: right;
+float: right;
+font-size: 1.2rem;
+}
 #resume h2, .resume-header p{
 border-bottom: 1px solid #888;
 padding-bottom: 2rem;
@@ -2650,8 +2686,12 @@ margin: 0 0 4rem;
 }
 #resume p{
 float: left;
-margin: 0 0 1rem;
 line-height: 1.4;
+margin: 0 0 1rem;
+}
+#resume .resume-header p{
+margin: 4rem 0 0rem 0;
+padding: 0 0 4rem;
 }
 #resume i{
 font-size: 1.4rem;
@@ -2664,14 +2704,21 @@ line-height: 1;
 font-size: 1.4rem;
 color: #888;
 margin: 0;
-padding:0;
+padding: 0;
 line-height: 1.4;
+width: auto;
+clear: both;
 }
 #resume a{
+text-decoration: none;
 color:#333;
 }
 #resume a:hover{
 color:#000;
+}
+.title-card a{
+clear: both;
+float: left;
 }
 
 /* MEDIA */
@@ -2864,6 +2911,13 @@ body.mobile .non-mobile{display:none !important;}
 	}
 	.slide-nav .back{
 		color: #333;
+		margin: 0;
+		right: 0;
+		top: 0;
+		padding: .5rem;
+		height: auto;
+		line-height: 1;
+		width: auto;
 	}
 	.slide-nav .back:hover{
 		color: #000;
@@ -2873,6 +2927,22 @@ body.mobile .non-mobile{display:none !important;}
 	}
 	.frame-wrap.swap{
 		min-height: 54rem;
+	}
+	.social{
+		text-align: center;
+		width: 100%;
+		margin: 0 0 2rem;
+	}
+	.social li{
+		float:none;
+		display: inline-block;
+		width: auto;
+	}
+	footer p{
+		float:left;
+		width: 100%;
+		margin: 0 0 2rem;
+		padding: 0;
 	}
 }
 @media (max-width:720px){
@@ -2904,6 +2974,9 @@ body.mobile .non-mobile{display:none !important;}
 	#resume-wrap{
 		margin: 0;
 		padding: 4rem 2rem;
+	}
+	.title-card{
+		display: none;
 	}
 }
 /*@media (max-width:420px) and (min-width:321px){ */
