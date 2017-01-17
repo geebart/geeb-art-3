@@ -388,6 +388,9 @@ margin: 0 2rem 0 0;
 letter-spacing: 1px;
 padding: 1.35rem 0;
 }
+.resume-link:hover{
+	
+}
 .title-card a{
 font-family: 'Ubuntu', sans-serif;
 font-weight: bold;
