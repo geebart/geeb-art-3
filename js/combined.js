@@ -84,34 +84,38 @@ jQuery(document).ready(function($){
 
 	// TIMELINE ON SCROLL
 	$(window).scroll(function(){
-		if($tm.isOnScreenWithOffset()){
-			$tm.find('> ul > li').each(function(){
-				if($(this).isOnScreenWithOffset()){
-					$(this).addClass('active');
-				} else if($(this).offset().top > $(window).scrollTop()){
-					$(this).removeClass('active');
-				}
-				if($(this).is(':last-child') && $(this).hasClass('active') && !$(this).hasClass('last') && !$(this).hasClass('once')){
-					$(this).addClass('last once');
-					var $btn = $(this).find('.button');
-					setTimeout(function(){
-						$btn.addClass('active');
-					}, 400);
-					setTimeout(function(){
-						$btn.removeClass('active');
-					}, 700);
-				} else{
-					$(this).removeClass('last');
-				}
-				// DRAW LINE
-				$tmProgress.height($tm.find('li.active').last().position().top + 5);
-			});
-		}
-		// FIXED/STICKY NAV
-		if(!$('#greet-hero').isOnScreenWithOffset(20)){
-			$('header').addClass('active');
+		if(!$body.hasClass('mobile')){
+			if($tm.isOnScreenWithOffset()){
+				$tm.find('> ul > li').each(function(){
+					if($(this).isOnScreenWithOffset()){
+						$(this).addClass('active');
+					} else if($(this).offset().top > $(window).scrollTop()){
+						$(this).removeClass('active');
+					}
+					if($(this).is(':last-child') && $(this).hasClass('active') && !$(this).hasClass('last') && !$(this).hasClass('once')){
+						$(this).addClass('last once');
+						var $btn = $(this).find('.button');
+						setTimeout(function(){
+							$btn.addClass('active');
+						}, 400);
+						setTimeout(function(){
+							$btn.removeClass('active');
+						}, 700);
+					} else{
+						$(this).removeClass('last');
+					}
+					// DRAW LINE
+					$tmProgress.height($tm.find('li.active').last().position().top + 5);
+				});
+			}
+			// FIXED/STICKY NAV
+			if(!$('#greet-hero').isOnScreenWithOffset(20)){
+				$('header').addClass('active');
+			} else{
+				$('header').removeClass('active');
+			}
 		} else{
-			$('header').removeClass('active');
+			$tm.find('> ul > li').addClass('active');
 		}
 	});
 
@@ -296,7 +300,12 @@ jQuery(document).ready(function($){
 		$('#greet-hero').addClass('active');
 
 		// SCROLL BACK TO PREVIOUS SECTION
-		$('html, body').scrollTop($('.projects-wrap .project.active').offset().top - headerHeight);
+		if($('.projects-wrap .project.active').length > 0){
+			$('html, body').scrollTop($('.projects-wrap .project.active').offset().top - headerHeight);
+		}
+
+		// RESET HERO BACKGROUND VIDEO IN CASE WE STARTED THE PAGE IN A SLIDE
+		resizePlayer();
 	});
 
 	// PROJECT QUICK NAV NEXT
